@@ -6,7 +6,7 @@ public class ConexionDB {
 
 	public ConexionDB() {
 		try {
-			//1 ConexiÃ³n
+			//1 Conexión
 			Connection c =  DriverManager.getConnection("jdbc:sqlite:IglesiaLibro.db");
 			
 			System.out.println("Conexion con exito"  + c);
