@@ -15,11 +15,10 @@ public class CapturarPersonaController implements ActionListener{
 		formularioPersona.guardar.addActionListener(this);
 		 
 		/*
-		
-		
 		p.describirPersona();
 		CapturarPersonaController capturar = new CapturarPersonaController(this);
-		guardar.addActionListener(capturar);*/
+		guardar.addActionListener(capturar);
+		*/
 	}
 	
 	@Override
