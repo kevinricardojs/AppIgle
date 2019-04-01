@@ -20,11 +20,7 @@ public class Main {
 			 JOptionPane.showMessageDialog(null, "Gui no compatible");
 		 }
 			 
-		 
-			 
-
 		MarcoApp m = new MarcoApp();
-		//ConexionDB c = new ConexionDB();
 
 	}
 

@@ -2,12 +2,15 @@ package com.iglesia.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import com.iglesia.BD.ConexionDB;
 import com.iglesia.model.Persona;
 import com.iglesia.view.forms.NewPersona;
 
 public class CapturarPersonaController implements ActionListener{
 	Persona p = new Persona();
 	NewPersona formularioPersona = new NewPersona();
+	ConexionDB db = new ConexionDB();
 	
 	
 	public CapturarPersonaController(NewPersona formPersona) {
@@ -23,22 +26,22 @@ public class CapturarPersonaController implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		p.setNombres(formularioPersona.nombres.getText());
-		p.setApellidos(formularioPersona.apellidos.getText());
-		p.setDPI(formularioPersona.DPI.getText());
-		p.setSexo(formularioPersona.sexo.getText());
-		p.setDireccion(formularioPersona.direccion.getText());
-		p.setTelCasa(formularioPersona.tel_casa.getText());
-		p.setTelEmpresa(formularioPersona.tel_empresa.getText());
-		p.setCelular(formularioPersona.celular.getText());
-		p.setEstadoCivil(formularioPersona.estado_civil.getText());
-		p.setNacimiento(formularioPersona.fecha_nacimiento.getText());
-		p.setCristiano(formularioPersona.fecha_cristiano.getText());
-		p.setFotoUrl(formularioPersona.fotografia_url.getText());
-		System.out.println("Funciona");
+		p.setNombres(formularioPersona.nombres);
+		p.setApellidos(formularioPersona.apellidos);
+		p.setDPI(formularioPersona.DPI);
+		p.setSexo(formularioPersona.sexo);
+		p.setDireccion(formularioPersona.direccion);
+		p.setTelCasa(formularioPersona.tel_casa);
+		p.setTelEmpresa(formularioPersona.tel_empresa);
+		p.setCelular(formularioPersona.celular);
+		p.setEstadoCivil(formularioPersona.estado_civil);
+		p.setNacimiento(formularioPersona.fecha_nacimiento);
+		p.setCristiano(formularioPersona.fecha_cristiano);
+		p.setFotoUrl(formularioPersona.fotografia_url);
 		//formularioPersona.show();
 		
 		p.describirPersona();
-		
 	}
+	
+	
 }

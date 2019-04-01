@@ -1,16 +1,20 @@
 package com.iglesia.model;
 
+import java.awt.Color;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 public class Persona {
 	
 	private String nombres;
 	private String apellidos;
 	private String DPI;
-	private String sexo;
+	private int sexo;
 	private String direccion;
 	private String telCasa;
 	private String celular;
@@ -38,61 +42,100 @@ public class Persona {
 	
 	public Persona(){}
 
-	public void setNombres(String nombres2) {
-		this.nombres = nombres2;
+	//Validaciones
+	
+	public void setNombres(JTextField nombres2) {
+		if(!nombres2.getText().isEmpty() && nombres2.getText().length() >= 5) {
+			nombres2.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
+			this.nombres = nombres2.getText();
+		}
+		else {
+			nombres2.setBorder(BorderFactory.createLineBorder(Color.decode("#B00020")));
+		}
+	}
+
+	public void setApellidos(JTextField apellidos2) {
+		if(!apellidos2.getText().isEmpty() && apellidos2.getText().length() >= 5) {
+			apellidos2.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
+			this.apellidos = apellidos2.getText();
+		}
+		else {
+			apellidos2.setBorder(BorderFactory.createLineBorder(Color.decode("#B00020")));
+		}
+	}
+
+	public void setDPI(JTextField dpi2) {
+		if (dpi2.getText().length() == 13) {
+			dpi2.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
+			this.DPI = dpi2.getText();
+		}
+		else{
+			dpi2.setBorder(BorderFactory.createLineBorder(Color.red));
+		}
+		
 		
 	}
 
-	public void setApellidos(String apellidos2) {
-		this.apellidos = apellidos2;
+	public void setSexo(JComboBox sexo2) {
+		if(sexo2.getSelectedIndex() != 0) {
+			sexo2.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
+			this.sexo = sexo2.getSelectedIndex();
+		}
+		else{
+			sexo2.setBorder(BorderFactory.createLineBorder(Color.decode("#B00020")));
+		}
 		
 	}
 
-	public void setDPI(String dpi2) {
-		this.DPI = dpi2;
+	public void setDireccion(JTextField direccion2) {
+		if(!direccion2.getText().isEmpty() && direccion2.getText().length() <= 5) {
+			direccion2.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
+			this.direccion = direccion2.getText();
+		}
+		else{
+			direccion2.setBorder(BorderFactory.createLineBorder(Color.decode("#B00020")));
+		}
+	}
+
+	public void setTelCasa(JTextField telCasa2) {
+		if(telCasa2 != null) {
+			this.telCasa = telCasa2.getText();
+		}
+		else{
+			this.telCasa = "";
+		}
+	}
+
+	public void setCelular(JTextField celular2) {
+		if(celular2 != null) {
+			this.celular = celular2.getText();
+		}
+		else{
+			this.telCasa = "";
+		}
+		
+	}
+	public void setTelEmpresa(JTextField telempresa2){
+		this.telEmpresa = telempresa2.getText();
+	}
+
+	public void setEstadoCivil(JTextField estadoCivil2) {
+		this.estadoCivil = estadoCivil2.getText();
 		
 	}
 
-	public void setSexo(String sexo2) {
-		this.sexo = sexo2;
+	public void setNacimiento(JTextField nacimiento) {
+		this.fechaNacimiento = nacimiento.getText();
 		
 	}
 
-	public void setDireccion(String direccion2) {
-		this.direccion = direccion2;
-
-	}
-
-	public void setTelCasa(String telCasa2) {
-		this.telCasa = telCasa2;
+	public void setCristiano(JTextField cristiano) {
+		this.fechaCristiano = cristiano.getText();
 		
 	}
 
-	public void setCelular(String celular2) {
-		this.celular = celular2;
-		
-	}
-	public void setTelEmpresa(String telempresa2){
-		this.telEmpresa = telempresa2;
-	}
-
-	public void setEstadoCivil(String estadoCivil2) {
-		this.estadoCivil = estadoCivil2;
-		
-	}
-
-	public void setNacimiento(String nacimiento) {
-		this.fechaNacimiento = nacimiento;
-		
-	}
-
-	public void setCristiano(String cristiano) {
-		this.fechaCristiano = cristiano;
-		
-	}
-
-	public void setFotoUrl(String fotoUrl) {
-		this.fotografiaUrl = fotoUrl;
+	public void setFotoUrl(JTextField fotoUrl) {
+		this.fotografiaUrl = fotoUrl.getText();
 		
 	}
 	

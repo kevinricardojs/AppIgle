@@ -5,6 +5,7 @@ import java.awt.Font;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -19,7 +20,7 @@ public class NewPersona extends JPanel{
 	public JTextField nombres;
 	public JTextField apellidos;
 	public JTextField DPI;
-	public JTextField sexo;
+	public JComboBox sexo;
 	public JTextField direccion;
 	public JTextField tel_casa;
 	public JTextField celular;
@@ -48,7 +49,7 @@ public class NewPersona extends JPanel{
 		this.add(DPI,"pushx, growx");
 		
 		this.add(new JLabel("Sexo:"));
-		this.sexo = new JTextField();
+		sexo = new JComboBox(new String[] {"", "M", "F"});
 		this.add(sexo,"pushx, growx ");
 		
 		this.add(new JLabel("Dirección:"));
@@ -89,7 +90,7 @@ public class NewPersona extends JPanel{
 	}
 	
 	public void show(){
-		System.out.println(nombres.getText() + " " + apellidos.getText() + " " + DPI.getText() + " " + sexo.getText() + " " + direccion.getText() + " " + tel_casa.getText() + " " + celular.getText() + " " + tel_empresa.getText() + " " + estado_civil.getText() + " " + fecha_nacimiento.getText() + " " + fecha_cristiano.getText() + " " + fotografia_url.getText());
+		System.out.println(nombres.getText() + " " + apellidos.getText() + " " + DPI.getText() + " " + sexo.getSelectedIndex() + " " + direccion.getText() + " " + tel_casa.getText() + " " + celular.getText() + " " + tel_empresa.getText() + " " + estado_civil.getText() + " " + fecha_nacimiento.getText() + " " + fecha_cristiano.getText() + " " + fotografia_url.getText());
 	}
 
 }

@@ -28,7 +28,7 @@ public class JPIzquierda extends JPanel{
 		
 		addBotones();
 	}
-	// Inicializando botomes del panel Izquierdo
+	// Inicializando botones del panel Izquierdo
 	private void addBotones() {
 		
 		Icon personaIcono = new ImageIcon("imagenes/persona.png");
