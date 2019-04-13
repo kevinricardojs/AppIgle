@@ -5,10 +5,17 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-	Connection conn = null;
+	private Connection conn = null;
 
-	public ConexionDB() {		
+	public ConexionDB() {
 		
+	}
+
+	public Connection conexion() {
+		return this.conn;
+	}
+
+	public Connection conectar() {
 		try {
 			// db parameters
 			String url       = "jdbc:mysql://localhost:3306/libroiglesia?autoReconnect=true&useSSL=false";
@@ -16,10 +23,13 @@ public class ConexionDB {
 			String password  = "Kevin.jimenez5745";
 
 			conn = DriverManager.getConnection(url, user, password);
+			return conn;
 
 		} catch(SQLException e) {
+			conn = null;
 			System.out.println(e.getMessage());
-		}
+			return conn;
+		}/*
 		finally {
 			try{
 				if(conn != null) {
@@ -28,7 +38,17 @@ public class ConexionDB {
 			}catch(SQLException ex){
 				System.out.println(ex.getMessage());
 			}
+		*/
+	}
+	
+	private void cerrarConexion() {
+		try{
+			if(conn != null) {
+				conn.close();
+			}
+		}catch(SQLException ex){
+			System.out.println(ex.getMessage());
 		}
 	}
-
+	
 }

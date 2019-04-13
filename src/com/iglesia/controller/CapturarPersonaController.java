@@ -1,16 +1,22 @@
 package com.iglesia.controller;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.iglesia.BD.ConexionDB;
+import com.iglesia.BD.PersonaDB;
 import com.iglesia.model.Persona;
 import com.iglesia.view.forms.NewPersona;
+import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.Statement;
 
 public class CapturarPersonaController implements ActionListener{
 	Persona p = new Persona();
 	NewPersona formularioPersona = new NewPersona();
-	ConexionDB db = new ConexionDB();
+	//ConexionDB db = new ConexionDB();
 	
 	
 	public CapturarPersonaController(NewPersona formPersona) {
@@ -41,7 +47,13 @@ public class CapturarPersonaController implements ActionListener{
 		//formularioPersona.show();
 		
 		p.describirPersona();
+		PersonaDB pDB = new PersonaDB(this.p);
+		
 	}
 	
+	void addPersonaSQL() throws SQLException{
+		
+
+	}
 	
 }
