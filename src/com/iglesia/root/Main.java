@@ -10,6 +10,7 @@ import com.iglesia.model.*;
 
 
 public class Main {
+	static MarcoApp m;
 	public static void main(String[] args) {
 		
 		try { 
@@ -20,7 +21,7 @@ public class Main {
 			 JOptionPane.showMessageDialog(null, "Gui no compatible");
 		 }
 			 
-		MarcoApp m = new MarcoApp();
+		 m = new MarcoApp();
 
 	}
 

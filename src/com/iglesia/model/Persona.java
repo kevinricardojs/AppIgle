@@ -1,6 +1,7 @@
 package com.iglesia.model;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -152,8 +153,7 @@ public class Persona {
 
 	public void setNacimiento(JDateChooser nacimiento) {
 		if((nacimiento.getDate() != null)) {
-			System.out.println(nacimiento.getDate().toString());
-			String fecha = formatFecha(nacimiento.getDate().toString());
+			String fecha = formatFecha(nacimiento.getDate());
 			nacimiento.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
 			System.out.println(fecha);
 			this.fechaNacimiento = fecha;
@@ -167,7 +167,7 @@ public class Persona {
 	public void setCristiano(JDateChooser cristiano) {
 		if((cristiano.getDate() != null)) {
 			System.out.println(cristiano.getDate().toString());
-			String fecha = formatFecha(cristiano.getDate().toString());
+			String fecha = formatFecha(cristiano.getDate());
 			cristiano.setBorder(BorderFactory.createLineBorder(Color.decode("#008b00")));
 			System.out.println(fecha);
 			this.fechaCristiano = fecha;
@@ -191,9 +191,11 @@ public class Persona {
 	
 
 	
-	private String formatFecha(String f) {
-		String[] ary = f.split(" ");
-		f = ary[2] + "/" + ary[1] + "/" + ary[5] ;
+	private String formatFecha(Date d) {
+		String strFormato = "dd/MM/yyyy";
+		SimpleDateFormat formato = new SimpleDateFormat(strFormato);
+		
+		String f = formato.format(d).toString();
 		return f;
 	}
 	

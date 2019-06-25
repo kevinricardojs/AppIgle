@@ -33,11 +33,11 @@ public class AddMatrimonio extends JPanel{
 	
 	public void inicializarComponentes(){
 		this.add(new JLabel("Esposo:"));
-		esposo = new JComboBox(new String[] {"", "Kevin Jimenez", "Ricardo Samayoa"});
+		esposo = new JComboBox(new String[] {"", "Erick Gonzalez", "Kevin Jimenez"});
 		this.add(esposo,"pushx, growx, span 3");
 		
 		this.add(new JLabel("Esposa:"));
-		esposa = new JComboBox(new String[] {"", "Leticia Cojón", "Brenda Gutierrez"});
+		esposa = new JComboBox(new String[] {"", "Esther Montepeque"});
 		this.add(esposa,"pushx, growx, span 3");
 		
 		guardar = new BotonDef("Guardar");

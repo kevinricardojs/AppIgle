@@ -40,15 +40,15 @@ public class AddPresentacion extends JPanel{
 	
 	public void inicializarComponentes(){
 		this.add(new JLabel("Padre:"));
-		padre = new JComboBox(new String[] {"", "Kevin Jimenez", "Ricardo Samayoa"});
+		padre = new JComboBox(new String[] {"", "Erick Gonzalez"});
 		this.add(padre,"pushx, growx, span 3");
 		
 		this.add(new JLabel("Madre:"));
-		madre = new JComboBox(new String[] {"", "Leticia Cojón", "Brenda Gutierrez"});
+		madre = new JComboBox(new String[] {"", "Esther Montepeque", "Brenda Gutierrez"});
 		this.add(madre,"pushx, growx, span 3");
 		
 		this.add(new JLabel("Niño:"));
-		ninio = new JComboBox(new String[] {"","Samuel Jimenez Cojón"});
+		ninio = new JComboBox(new String[] {"","Iliana Gonzalez Montepeque"});
 		this.add(ninio,"pushx, growx, span 3");
 		
 		guardar = new BotonDef("Guardar");

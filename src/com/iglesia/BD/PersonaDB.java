@@ -5,12 +5,15 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.iglesia.model.Persona;
+import com.iglesia.view.forms.NewPersona;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
 public class PersonaDB extends ConexionDB{
+	NewPersona form;
 	
-	public PersonaDB(Persona p) {
+	public PersonaDB(Persona p, NewPersona form) {
+		this.form = form;
 		insert(p);
 	}
 	
@@ -39,11 +42,14 @@ public class PersonaDB extends ConexionDB{
 			
 			//stmt.executeUpdate("insert into persona(nombres, fecha) values('" + p.getNombres() + "' ,'" + p.getFechaNac() +"');");
 			
-			System.out.println("insercion completada");
+			JOptionPane.showMessageDialog(null, "Registro Exitoso");
+			//this.form.clean();
+			
 		}catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			
 			System.out.println("insercion incompleta");
+			
 		}
 		
 		}

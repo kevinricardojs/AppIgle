@@ -47,7 +47,8 @@ public class CapturarPersonaController implements ActionListener{
 		//formularioPersona.show();
 		
 		p.describirPersona();
-		PersonaDB pDB = new PersonaDB(this.p);
+		PersonaDB pDB = new PersonaDB(this.p, this.formularioPersona);
+		//formularioPersona.clean();
 		
 	}
 	

@@ -2,6 +2,8 @@ package com.iglesia.view.forms;
 
 import com.toedter.calendar.*;
 
+import java.util.Date;
+
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -24,6 +26,8 @@ public class NewPersona extends JPanel{
 	public JDateChooser fecha_nacimiento;
 	public JDateChooser fecha_cristiano;
 	public JTextField fotografia_url;
+	public JDateChooser fecha_asistir; 
+	public JComboBox miembro_activo;
 	public BotonDef guardar;
 	
 	public NewPersona(){
@@ -76,6 +80,14 @@ public class NewPersona extends JPanel{
 		this.fecha_cristiano = new JDateChooser();
 		this.add(fecha_cristiano,"pushx, growx ");
 		
+		this.add(new JLabel("Primer asistencia(*):"));
+		this.fecha_asistir = new JDateChooser();
+		this.add(fecha_asistir,"pushx, growx");
+		
+		this.add(new JLabel("Miembro Activo(*):"));
+		miembro_activo = new JComboBox<Object>(new String[] {"", "Si", "No"});
+		this.add(miembro_activo,"pushx, growx ");
+		
 		this.add(new JLabel("Fotografia:"));
 		this.fotografia_url = new JTextField();
 		this.add(fotografia_url,"pushx, growx, span 3");
@@ -85,8 +97,19 @@ public class NewPersona extends JPanel{
 		
 	}
 	
-/*	public void show(){
-		System.out.println(nombres.getText() + " " + apellidos.getText() + " " + DPI.getText() + " " + sexo.getSelectedIndex() + " " + direccion.getText() + " " + tel_casa.getText() + " " + celular.getText() + " " + tel_empresa.getText() + " " + estado_civil.getText() + " " + fecha_nacimiento.getText() + " " + fecha_cristiano.getText() + " " + fotografia_url.getText());
+	public void clean(){
+		
+		nombres.setText("");
+		apellidos.setText("");
+		DPI.setText("");
+		sexo.setSelectedIndex(0);
+		direccion.setText(""); 
+		tel_casa.setText("");
+		celular.setText("");
+		tel_empresa.setText("");
+		estado_civil.setSelectedIndex(0);
+		fecha_nacimiento.setDate(new Date());
+		fecha_cristiano.setDate(new Date());
+		fotografia_url.setText("");
 	}
-*/
 }
