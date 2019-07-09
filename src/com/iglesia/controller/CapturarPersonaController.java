@@ -3,8 +3,18 @@ package com.iglesia.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+
+import javax.imageio.ImageIO;
 
 import com.iglesia.BD.ConexionDB;
 import com.iglesia.BD.PersonaDB;
@@ -14,47 +24,61 @@ import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
 public class CapturarPersonaController implements ActionListener{
-	Persona p = new Persona();
-	NewPersona formularioPersona = new NewPersona();
-	//ConexionDB db = new ConexionDB();
+	Persona p;
+	NewPersona f;
 	
-	
-	public CapturarPersonaController(NewPersona formPersona) {
-		formularioPersona = formPersona;
-		formularioPersona.guardar.addActionListener(this);
-		 
-		/*
-		p.describirPersona();
-		CapturarPersonaController capturar = new CapturarPersonaController(this);
-		guardar.addActionListener(capturar);
-		*/
+	public CapturarPersonaController(NewPersona f) {
+		this.f = f;
+		f.guardar.addActionListener(this);
+
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		p.setNombres(formularioPersona.nombres);
-		p.setApellidos(formularioPersona.apellidos);
-		p.setDPI(formularioPersona.DPI);
-		p.setSexo(formularioPersona.sexo);
-		p.setDireccion(formularioPersona.direccion);
-		p.setTelCasa(formularioPersona.tel_casa);
-		p.setTelEmpresa(formularioPersona.tel_empresa);
-		p.setCelular(formularioPersona.celular);
-		p.setEstadoCivil(formularioPersona.estado_civil);
-		p.setNacimiento(formularioPersona.fecha_nacimiento);
-		p.setCristiano(formularioPersona.fecha_cristiano);
-		p.setFotoUrl(formularioPersona.fotografia_url);
-		//formularioPersona.show();
-		
-		p.describirPersona();
-		PersonaDB pDB = new PersonaDB(this.p, this.formularioPersona);
-		//formularioPersona.clean();
+		if(this.f.formValid()) {
+			
+			this.guardarFoto(f.imagePath, f.DPI.getText());
+			f.clean();
+		}
+		else {
+			System.out.println("Formulario invalid");
+		}
+
+		//PersonaDB pDB = new PersonaDB(this.p, this.f);
+		//formulario.clean();
 		
 	}
-	
-	void addPersonaSQL() throws SQLException{
-		
 
+	
+	private void guardarFoto(String path, String dpi) {
+		try {
+
+			File foto = new File(path);
+			FileInputStream fis = new FileInputStream(foto);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			byte[] buf = new byte[1024];
+
+			try {
+
+				for (int readNum; (readNum = fis.read(buf)) !=  -1;) {
+					bos.write(buf, 0, readNum);
+				}
+
+				byte[] bytes = bos.toByteArray();
+
+				File copia = new File("fotos\\FT-" + dpi + ".PNG");
+				BufferedImage img  = ImageIO.read(new ByteArrayInputStream(bytes));
+				ImageIO.write(img, "PNG", copia);
+				
+				
+			} catch (IOException e2) {
+				// TODO: handle exception
+			}
+
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 	
 }

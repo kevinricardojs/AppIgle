@@ -15,7 +15,7 @@ import com.iglesia.view.forms.NewPersona;
 import net.miginfocom.swing.MigLayout;
 
 public class MarcoApp extends JFrame {
-	public JPanel mainPanel;
+	public FJPanel mainPanel;
 	public JPIzquierda panelIzquierda;
 	public AddMatrimonio panelMatrimonio;
 	public AddPresentacion panelPresentacion;
@@ -34,7 +34,7 @@ public class MarcoApp extends JFrame {
 		this.setIconImage(new ImageIcon("ico.png").getImage());
 		
 		//Seteando maximixado inicial 
-		this.setMinimumSize(new Dimension(1074,720));
+		this.setMinimumSize(new Dimension(1074,768));
 		//Seteando el tipo de Layout
 		//this.setLayout(new BorderLayout());
 		this.iniciarComponentes();
@@ -45,17 +45,20 @@ public class MarcoApp extends JFrame {
 	}	
 		
 private void iniciarComponentes() {
-	 mainPanel = new JPanel();
+	 mainPanel = new FJPanel(new ImageIcon("imagenes/background.jpg").getImage());
 	 panelIzquierda = new JPIzquierda(this);
 	 panelMatrimonio = new AddMatrimonio();
 	 panelPresentacion = new AddPresentacion();
 	 panelPersona = new NewPersona();
-	
+	 
+	 
 	this.getContentPane().add(mainPanel);
-	mainPanel.setBackground(Color.decode("#F9AA33"));
-	mainPanel.setLayout(new MigLayout("fill", "0[150]10[grow]0", "0[grow]0"));
+	this.setBackground(Color.decode("#232F34"));
 	
-	mainPanel.add(panelIzquierda, "grow");
+
+	mainPanel.setLayout(new MigLayout("fillx", "0[grow]0", "0[grow]0[]0"));
+	
+	mainPanel.add(panelIzquierda, "north");
 }
 	
 }

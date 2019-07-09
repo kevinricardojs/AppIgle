@@ -2,99 +2,164 @@ package com.iglesia.view.forms;
 
 import com.toedter.calendar.*;
 
+import net.miginfocom.swing.MigLayout;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
 import java.util.Date;
 
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import com.iglesia.helpers.BotonDef;
+import com.iglesia.helpers.Helper;
+import com.iglesia.helpers.ImgChooser;
+import com.iglesia.helpers.JLabelColored;
+import com.iglesia.helpers.TextValidField;
 
 public class NewPersona extends JPanel{
-	public JTextField nombres;
-	public JTextField apellidos;
-	public JTextField DPI;
-	public JComboBox sexo;
-	public JTextField direccion;
-	public JTextField tel_casa;
-	public JTextField celular;
-	public JTextField tel_empresa;
-	public JComboBox estado_civil;
+	public TextValidField nombres;
+	public TextValidField apellidos;
+	public TextValidField DPI;
+	public JComboBox<Object> sexo;
+	public TextValidField direccion;
+	public TextValidField tel_casa;
+	public TextValidField celular;
+	public TextValidField tel_empresa;
+	public JComboBox<Object> estado_civil;
 	public JDateChooser fecha_nacimiento;
 	public JDateChooser fecha_cristiano;
-	public JTextField fotografia_url;
+	public JButton fotografia_url;
 	public JDateChooser fecha_asistir; 
-	public JComboBox miembro_activo;
+	public JComboBox<Object> miembro_activo;
 	public BotonDef guardar;
+	public JLabelColored imagenX;
+	public String imagePath;
+	
+	public boolean valid;
 	
 	public NewPersona(){
+		imagePath = "";
+		this.setLayout(new MigLayout("wrap 4, gap 5! 12!, insets 50 50"));
+		this.setBackground(Color.decode("#263238"));
+		Icon plus = new ImageIcon("imagenes/plus.png");
+		JLabel titulo = new JLabel("Añadir Nueva Persona", plus, SwingConstants.LEFT);
+		titulo.setFont(new Font("Arial", Font.BOLD, 25));
+		titulo.setForeground(Color.white);
+		this.add(titulo, "growx, span 4");
+		this.inicializarComponentes();
+		
+		
+
 		
 	}
 
 	public void inicializarComponentes() {
-		this.add(new JLabel("Nombres(*):"));
-		nombres = new JTextField();
+		this.add(new JLabelColored("Nombres(*):", "#FFFFFF"));
+		nombres = new TextValidField(5, 50, true);
 		this.add(nombres,"pushx, growx, span 3");
 		
-		this.add(new JLabel("Apellidos(*):"));
-		apellidos = new JTextField();
+		this.add(new JLabelColored("Apellidos(*):", "#FFFFFF"));
+		apellidos = new TextValidField(5, 50, true);
 		this.add(apellidos, "pushx, growx, span 3");
 		
-		this.add(new JLabel("DPI(*):"));
-		this.DPI = new JTextField();
+		this.add(new JLabelColored("DPI(*):", "#FFFFFF" ));
+		this.DPI = new TextValidField(13, 13, true);
 		this.add(DPI,"pushx, growx");
 		
-		this.add(new JLabel("Sexo(*):"));
+		this.add(new JLabelColored("Sexo(*):", "#FFFFFF"));
 		sexo = new JComboBox<Object>(new String[] {"", "M", "F"});
 		this.add(sexo,"pushx, growx ");
 		
-		this.add(new JLabel("Dirección(*):"));
-		this.direccion = new JTextField();
+		this.add(new JLabelColored("Dirección(*):", "#FFFFFF"));
+		this.direccion = new TextValidField(5, 60, true);
 		this.add(direccion," pushx, growx, span 3");
 		
 		
-		this.add(new JLabel("Telefono Casa:"));
-		this.tel_casa = new JTextField();
+		this.add(new JLabelColored("Telefono Casa:", "#FFFFFF"));
+		this.tel_casa = new TextValidField(8, 8, false);
 		this.add(tel_casa,"pushx, growx ");
 		
-		this.add(new JLabel("Celular:"));
-		this.celular = new JTextField();
+		this.add(new JLabelColored("Celular(*):", "#FFFFFF"));
+		this.celular = new TextValidField(8, 8, true);
 		this.add(celular,"pushx, growx ");
 		
-		this.add(new JLabel("Telefono Empresa:"));
-		this.tel_empresa = new JTextField();
+		this.add(new JLabelColored("Telefono Empresa:", "#FFFFFF"));
+		this.tel_empresa = new TextValidField(8, 8,false);
 		this.add(tel_empresa,"pushx, growx ");
 		
-		this.add(new JLabel("Estado Civil(*):"));
+		this.add(new JLabelColored("Estado Civil(*):", "#FFFFFF"));
 		estado_civil = new JComboBox<Object>(new String[] {"", "Soltero/a", "Casado/a", "Viudo/a"});
 		this.add(estado_civil,"pushx, growx ");
 		
-		this.add(new JLabel("Fecha de Nacimento(*):"));
-		this.fecha_nacimiento = new JDateChooser();
+		this.add(new JLabelColored("Fecha de Nacimento(*):", "#FFFFFF"));
+		this.fecha_nacimiento = new JDateChooser(new Date());
 		this.add(fecha_nacimiento,"pushx, growx");
 		
-		this.add(new JLabel("Fecha Aceptó a Cristo(*):"));
+		this.add(new JLabelColored("Fecha Aceptó a Cristo(*):", "#FFFFFF"));
 		this.fecha_cristiano = new JDateChooser();
 		this.add(fecha_cristiano,"pushx, growx ");
 		
-		this.add(new JLabel("Primer asistencia(*):"));
+		this.add(new JLabelColored("Primer asistencia(*):", "#FFFFFF"));
 		this.fecha_asistir = new JDateChooser();
 		this.add(fecha_asistir,"pushx, growx");
 		
-		this.add(new JLabel("Miembro Activo(*):"));
+		this.add(new JLabelColored("Miembro Activo(*):", "#FFFFFF"));
 		miembro_activo = new JComboBox<Object>(new String[] {"", "Si", "No"});
 		this.add(miembro_activo,"pushx, growx ");
 		
-		this.add(new JLabel("Fotografia:"));
-		this.fotografia_url = new JTextField();
-		this.add(fotografia_url,"pushx, growx, span 3");
+		/*
+		this.add(new JLabelColored("Fotografia:"));
+		imagenX = new JLabelColored();
+		imagenX.setPreferredSize(new Dimension(270, 270));
+		imagenX.setForeground(Color.white);
+		Border border = BorderFactory.createDashedBorder(null, 2, 10, 10, true);
+		
+		imagenX.setBorder(border);
+		imagenX.setHorizontalAlignment(JLabelColored.CENTER);
+		imagenX.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camera.jpg"), 250, 250));
+		this.add(imagenX,"pushx, growx, span 3");
+		*/
+		this.fotografia_url = new BotonDef("Añadir");
+		fotografia_url.addActionListener(new ImgChooser(this));
+		fotografia_url.setBackground(new Color(75, 75, 75));
+		fotografia_url.setPreferredSize(new Dimension(270, 270));
+		fotografia_url.setForeground(Color.white);
+		Border borde = BorderFactory.createDashedBorder(null, 3, 10, 10, true);
+		
+		fotografia_url.setBorder(borde);
+		fotografia_url.setHorizontalAlignment(JLabelColored.CENTER);
+		fotografia_url.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camara.PNG"), 250, 250));
+		this.add(fotografia_url,"skip 1, span 2, wrap, growx");
+		
+		
 		
 		guardar = new BotonDef("Guardar");
-		this.add(guardar, "span 1, pushx, growx");
+		this.add(guardar, "skip 1, span 2, growx");
 		
+		
+		
+	}
+	
+	public boolean formValid() {
+		if(this.nombres.getValid() && this.apellidos.getValid() && this.DPI.getValid() && this.direccion.getValid() && this .celular.getValid() && this.imagePath != "") {
+			this.valid = true;;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "Debes llenar los campos obligatorios!", "Error en campos",JOptionPane.ERROR_MESSAGE);
+			this.valid = false;
+		}
+		
+		return this.valid;
 	}
 	
 	public void clean(){
@@ -110,6 +175,6 @@ public class NewPersona extends JPanel{
 		estado_civil.setSelectedIndex(0);
 		fecha_nacimiento.setDate(new Date());
 		fecha_cristiano.setDate(new Date());
-		fotografia_url.setText("");
+		imagenX.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camara.PNG"), 250, 250));
 	}
 }

@@ -24,7 +24,7 @@ public class JPIzquierda extends JPanel{
 	public JPIzquierda(MarcoApp padre) {
 		this.padre = padre;
 		this.setBackground(Color.decode("#232F34"));
-		this.setLayout(new MigLayout("wrap 1", "0[left]0", "0[60]0[60]0[60]0[grow]0" ));
+		this.setLayout(new MigLayout("", "0[]0[]0[]0[]0[]0", "0[]0" ));
 		
 		addBotones();
 	}
@@ -55,9 +55,9 @@ public class JPIzquierda extends JPanel{
 		addPresentacion.addActionListener(controllerPresentacion);
 
 		
-		this.add(addPersona, "grow, push");
-		this.add(addMatrimonio, "grow, push");
-		this.add(addPresentacion, "grow, push");
+		this.add(addPersona, "");
+		this.add(addMatrimonio, "");
+		this.add(addPresentacion, "");
 		
 	}
 	

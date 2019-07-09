@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.iglesia.helpers.BotonDef;
+import com.iglesia.helpers.JLabelColored;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -22,21 +23,22 @@ public class AddMatrimonio extends JPanel{
 
 	
 	public AddMatrimonio(){
-		this.setLayout(new MigLayout("wrap 4", "50[left]10[100]10[left]10[100]0[grow]", "10[fill]20[][]20[]50"));
-		this.setBackground(Color.white);
+		this.setLayout(new MigLayout("wrap 4, gap 5! 12!, insets 50 50"));
+		this.setBackground(Color.decode("#263238"));
 		Icon plus = new ImageIcon("imagenes/plus.png");
-		JLabel titulo = new JLabel("Añadir Nuevo Matrimonio", plus, SwingConstants. LEFT);
+		JLabel titulo = new JLabel("Registrar Matrimonio", plus, SwingConstants.LEFT);
 		titulo.setFont(new Font("Arial", Font.BOLD, 25));
+		titulo.setForeground(Color.white);
 		this.add(titulo, "growx, span 4");
 		this.inicializarComponentes();
 	}
 	
 	public void inicializarComponentes(){
-		this.add(new JLabel("Esposo:"));
+		this.add(new JLabelColored("Esposo:", "#FFFFFF"));
 		esposo = new JComboBox(new String[] {"", "Erick Gonzalez", "Kevin Jimenez"});
 		this.add(esposo,"pushx, growx, span 3");
 		
-		this.add(new JLabel("Esposa:"));
+		this.add(new JLabelColored("Esposa:", "#FFFFFF"));
 		esposa = new JComboBox(new String[] {"", "Esther Montepeque"});
 		this.add(esposa,"pushx, growx, span 3");
 		

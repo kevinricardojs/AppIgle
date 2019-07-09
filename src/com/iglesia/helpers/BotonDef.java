@@ -11,6 +11,9 @@ public class BotonDef extends JButton{
 	private Color clicked;
 	private Color normal;
 	
+	public BotonDef() {
+		
+	}
 	public BotonDef(String text, Icon icono){
 		super(text, icono);
 		this.setFocusPainted(false);
