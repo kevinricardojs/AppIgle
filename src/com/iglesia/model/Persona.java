@@ -39,6 +39,7 @@ public class Persona {
 		setFechaAsistir(form.fecha_asistir.getDate().toString());
 		setFechaBautizo(form.fecha_bautizo.getDate().toString());
 		setActivo(form.miembro_activo.getSelectedIndex());
+		
 	}
 	
 
