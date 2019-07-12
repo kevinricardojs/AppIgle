@@ -7,12 +7,14 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.iglesia.helpers.BotonDef;
 import com.iglesia.helpers.JLabelColored;
+import com.iglesia.helpers.SearchTextField;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -37,7 +39,15 @@ public class AddPresentacion extends JPanel{
 	
 	public void inicializarComponentes(){
 		this.add(new JLabelColored("Padre:", "#FFFFFF"));
-		padre = new JComboBox(new String[] {"", "Erick Gonzalez"});
+		
+		JList<String> lista = new JList();
+		SearchTextField buscador = new SearchTextField(lista);
+		lista.setBackground(Color.white);
+		this.add(buscador,"pushx, growx, span 3");
+		this.add(lista,"pushx, growx, span 3"); //data has type Object[]
+		
+		
+		padre = new JComboBox();
 		this.add(padre,"pushx, growx, span 3");
 		
 		this.add(new JLabelColored("Madre:", "#FFFFFF"));

@@ -11,20 +11,15 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.DateFormat;
-
 import javax.imageio.ImageIO;
 
-import com.iglesia.BD.ConexionDB;
 import com.iglesia.BD.PersonaDB;
 import com.iglesia.model.Persona;
 import com.iglesia.view.forms.NewPersona;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 
 public class CapturarPersonaController implements ActionListener{
-	Persona p;
+	Persona persona;
+	PersonaDB pDB;
 	NewPersona f;
 	
 	public CapturarPersonaController(NewPersona f) {
@@ -36,23 +31,19 @@ public class CapturarPersonaController implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(this.f.formValid()) {
+			this.persona = new Persona(f);
+			pDB = new PersonaDB(this.persona);
+			if(pDB.insert() && this.guardarFoto(f.imagePath, f.DPI.getText())) {
+				f.clean();
+			}
 			
-			this.guardarFoto(f.imagePath, f.DPI.getText());
-			f.clean();
 		}
-		else {
-			System.out.println("Formulario invalid");
-		}
-
-		//PersonaDB pDB = new PersonaDB(this.p, this.f);
-		//formulario.clean();
-		
 	}
 
 	
-	private void guardarFoto(String path, String dpi) {
+	private boolean guardarFoto(String path, String dpi) {
 		try {
-
+			
 			File foto = new File(path);
 			FileInputStream fis = new FileInputStream(foto);
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -70,14 +61,15 @@ public class CapturarPersonaController implements ActionListener{
 				BufferedImage img  = ImageIO.read(new ByteArrayInputStream(bytes));
 				ImageIO.write(img, "PNG", copia);
 				
-				
+				return true;
 			} catch (IOException e2) {
-				// TODO: handle exception
+				return false;
 			}
 
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
+			
 			e1.printStackTrace();
+			return false;
 		}
 	}
 	

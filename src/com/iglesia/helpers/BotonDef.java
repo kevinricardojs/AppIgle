@@ -24,6 +24,9 @@ public class BotonDef extends JButton{
 	
 	public BotonDef(String text) {
 		this.setText(text);
+		this.setFocusPainted(false);
+		this.setBorderPainted(false);
+//		super.setContentAreaFilled(false);
 	}
 	
 	@Override	

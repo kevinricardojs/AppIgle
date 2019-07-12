@@ -38,11 +38,11 @@ public class NewPersona extends JPanel{
 	public JComboBox<Object> estado_civil;
 	public JDateChooser fecha_nacimiento;
 	public JDateChooser fecha_cristiano;
+	public JDateChooser fecha_bautizo;
 	public JButton fotografia_url;
 	public JDateChooser fecha_asistir; 
 	public JComboBox<Object> miembro_activo;
 	public BotonDef guardar;
-	public JLabelColored imagenX;
 	public String imagePath;
 	
 	public boolean valid;
@@ -77,7 +77,7 @@ public class NewPersona extends JPanel{
 		this.add(DPI,"pushx, growx");
 		
 		this.add(new JLabelColored("Sexo(*):", "#FFFFFF"));
-		sexo = new JComboBox<Object>(new String[] {"", "M", "F"});
+		sexo = new JComboBox<Object>(new String[] {"M", "F"});
 		this.add(sexo,"pushx, growx ");
 		
 		this.add(new JLabelColored("Dirección(*):", "#FFFFFF"));
@@ -98,7 +98,7 @@ public class NewPersona extends JPanel{
 		this.add(tel_empresa,"pushx, growx ");
 		
 		this.add(new JLabelColored("Estado Civil(*):", "#FFFFFF"));
-		estado_civil = new JComboBox<Object>(new String[] {"", "Soltero/a", "Casado/a", "Viudo/a"});
+		estado_civil = new JComboBox<Object>(new String[] {"Soltero/a", "Casado/a", "Viudo/a"});
 		this.add(estado_civil,"pushx, growx ");
 		
 		this.add(new JLabelColored("Fecha de Nacimento(*):", "#FFFFFF"));
@@ -106,29 +106,21 @@ public class NewPersona extends JPanel{
 		this.add(fecha_nacimiento,"pushx, growx");
 		
 		this.add(new JLabelColored("Fecha Aceptó a Cristo(*):", "#FFFFFF"));
-		this.fecha_cristiano = new JDateChooser();
+		this.fecha_cristiano = new JDateChooser(new Date());
 		this.add(fecha_cristiano,"pushx, growx ");
 		
 		this.add(new JLabelColored("Primer asistencia(*):", "#FFFFFF"));
-		this.fecha_asistir = new JDateChooser();
+		this.fecha_asistir = new JDateChooser(new Date());
 		this.add(fecha_asistir,"pushx, growx");
 		
+		this.add(new JLabelColored("Primer asistencia(*):", "#FFFFFF"));
+		this.fecha_bautizo = new JDateChooser(new Date());
+		this.add(fecha_bautizo,"pushx, growx");
+		
 		this.add(new JLabelColored("Miembro Activo(*):", "#FFFFFF"));
-		miembro_activo = new JComboBox<Object>(new String[] {"", "Si", "No"});
-		this.add(miembro_activo,"pushx, growx ");
-		
-		/*
-		this.add(new JLabelColored("Fotografia:"));
-		imagenX = new JLabelColored();
-		imagenX.setPreferredSize(new Dimension(270, 270));
-		imagenX.setForeground(Color.white);
-		Border border = BorderFactory.createDashedBorder(null, 2, 10, 10, true);
-		
-		imagenX.setBorder(border);
-		imagenX.setHorizontalAlignment(JLabelColored.CENTER);
-		imagenX.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camera.jpg"), 250, 250));
-		this.add(imagenX,"pushx, growx, span 3");
-		*/
+		miembro_activo = new JComboBox<Object>(new String[] {"No", "Si"});
+		this.add(miembro_activo,"pushx, growx, wrap");
+
 		this.fotografia_url = new BotonDef("Añadir");
 		fotografia_url.addActionListener(new ImgChooser(this));
 		fotografia_url.setBackground(new Color(75, 75, 75));
@@ -151,7 +143,7 @@ public class NewPersona extends JPanel{
 	}
 	
 	public boolean formValid() {
-		if(this.nombres.getValid() && this.apellidos.getValid() && this.DPI.getValid() && this.direccion.getValid() && this .celular.getValid() && this.imagePath != "") {
+		if(this.nombres.getValid() && this.apellidos.getValid() && this.DPI.getValid() && this.direccion.getValid() && this .celular.getValid() && this.imagePath != "imagenes/camara.PNG" && this.imagePath != "" ) {
 			this.valid = true;;
 		}
 		else {
@@ -175,6 +167,6 @@ public class NewPersona extends JPanel{
 		estado_civil.setSelectedIndex(0);
 		fecha_nacimiento.setDate(new Date());
 		fecha_cristiano.setDate(new Date());
-		imagenX.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camara.PNG"), 250, 250));
+		fotografia_url.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camara.PNG"), 250, 250));
 	}
 }

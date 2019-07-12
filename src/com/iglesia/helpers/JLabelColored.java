@@ -3,7 +3,9 @@ package com.iglesia.helpers;
 import java.awt.Color;
 import java.awt.Font;
 
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 public class JLabelColored extends JLabel{
 	
@@ -12,4 +14,5 @@ public class JLabelColored extends JLabel{
 		this.setForeground(Color.decode(color));
 		this.setFont(new Font("Century Gothic", Font.BOLD, 15));
 	}
+	
 }

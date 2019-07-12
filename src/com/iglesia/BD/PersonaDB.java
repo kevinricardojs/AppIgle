@@ -1,27 +1,26 @@
 package com.iglesia.BD;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
 import com.iglesia.model.Persona;
 import com.iglesia.view.forms.NewPersona;
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
+
 
 public class PersonaDB extends ConexionDB{
-	NewPersona form;
+	Persona p;
 	
-	public PersonaDB(Persona p, NewPersona form) {
-		this.form = form;
-		insert(p);
+	public PersonaDB(Persona p) {
+		this.p = p;
 	}
 	
-	public void insert(Persona p) {
-		if(p.isValid()){
+	public boolean insert() {
 		try {
 			Connection conn = (Connection) this.conectar();
-			String insercion = "insert into persona(nombres, apellidos, dpi, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fotografia) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String insercion = "INSERT INTO persona(nombres, apellidos, dpi, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement doInsercion = (PreparedStatement) conn.prepareStatement(insercion);
 			
 			doInsercion.setString(1, p.getNombres());
@@ -35,7 +34,9 @@ public class PersonaDB extends ConexionDB{
 			doInsercion.setInt(9, p.getEstadoCivil());
 			doInsercion.setString(10, p.getFechaNacimiento());
 			doInsercion.setString(11, p.getFechaCristiano());
-			doInsercion.setString(12, p.getFotografiaUrl());
+			doInsercion.setString(12, p.getFechaBautizo());
+			doInsercion.setString(13, p.getFechaAsistir());
+			doInsercion.setInt(14, p.getActivo());
 			
 			doInsercion.executeUpdate();
 			//Statement stmt = (Statement) conn.createStatement();
@@ -43,18 +44,14 @@ public class PersonaDB extends ConexionDB{
 			//stmt.executeUpdate("insert into persona(nombres, fecha) values('" + p.getNombres() + "' ,'" + p.getFechaNac() +"');");
 			
 			JOptionPane.showMessageDialog(null, "Registro Exitoso");
-			//this.form.clean();
+			return true;
 			
 		}catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, e.getMessage());
 			
-			System.out.println("insercion incompleta");
+				JOptionPane.showMessageDialog(null, "DPI duplicado!", "Error de registro",JOptionPane.ERROR_MESSAGE);
+			return false;
 			
 		}
 		
-		}
-		else {
-			JOptionPane.showMessageDialog(null, "Por favor rellena los parametros necesarios");
-		}
 	}
 }

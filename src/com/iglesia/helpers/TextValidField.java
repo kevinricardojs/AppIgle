@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -17,7 +18,7 @@ public class TextValidField extends JTextField{
 		this.max = max;
 		this.empty = empty;
 		this.valid = false;
-		
+		this.borde();		
 		evts();
 
 	}
@@ -93,5 +94,10 @@ public class TextValidField extends JTextField{
 
 	}
 	
+
+	private void borde() {
+		Border borde = BorderFactory.createLineBorder(Color.white, 2);
+		this.setBorder(borde);
+	}
 
 }

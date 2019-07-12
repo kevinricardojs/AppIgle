@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import com.iglesia.view.forms.NewPersona;
+
 public class Persona {
 	
 	private String nombres;
@@ -17,12 +19,26 @@ public class Persona {
 	private int estadoCivil;
 	private String fechaNacimiento;
 	private String fechaCristiano;
-	private String fotografiaUrl;
+	private String fechaAsistir;
+	private String fechaBautizo;
+	private int activo;
 	
 	
-	public Persona(){
-		//DateFormat formato = DateFormat.getDateInstance();
-		//formato.format(f.fecha_nacimiento.getDate();
+	public Persona(NewPersona form){
+		setNombres(form.nombres.getText());
+		setApellidos(form.apellidos.getText());
+		setDPI(form.DPI.getText());
+		setSexo(form.sexo.getSelectedIndex());
+		setDireccion(form.direccion.getText());
+		setTelCasa(form.tel_casa.getText());
+		setCelular(form.celular.getText());
+		setTelEmpresa(form.tel_empresa.getText());
+		setEstadoCivil(form.estado_civil.getSelectedIndex());
+		setFechaNacimiento(form.fecha_nacimiento.getDate().toString());
+		setFechaCristiano(form.fecha_cristiano.getDate().toString());
+		setFechaAsistir(form.fecha_asistir.getDate().toString());
+		setFechaBautizo(form.fecha_bautizo.getDate().toString());
+		setActivo(form.miembro_activo.getSelectedIndex());
 	}
 	
 
@@ -114,11 +130,34 @@ public class Persona {
 		this.fechaCristiano = fechaCristiano;
 	}
 
-	public String getFotografiaUrl() {
-		return fotografiaUrl;
+	public String getFechaAsistir() {
+		return fechaAsistir;
 	}
 
-	public void setFotografiaUrl(String fotografiaUrl) {
-		this.fotografiaUrl = fotografiaUrl;
+
+	public void setFechaAsistir(String fechaAsistir) {
+		this.fechaAsistir = fechaAsistir;
 	}
+
+
+	public String getFechaBautizo() {
+		return fechaBautizo;
+	}
+
+
+	public void setFechaBautizo(String fechaBautizo) {
+		this.fechaBautizo = fechaBautizo;
+	}
+
+
+	public int getActivo() {
+		return activo;
+	}
+
+
+	public void setActivo(int activo) {
+		this.activo = activo;
+	}
+
+
 }

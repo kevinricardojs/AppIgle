@@ -8,7 +8,7 @@ public class ConexionDB {
 	private Connection conn = null;
 
 	public ConexionDB() {
-		
+		conectar();
 	}
 
 	public Connection conexion() {
@@ -18,11 +18,10 @@ public class ConexionDB {
 	public Connection conectar() {
 		try {
 			// db parameters
-			String url       = "jdbc:mysql://localhost:3306/libroiglesia?autoReconnect=true&useSSL=false";
-			String user      = "root";
-			String password  = "Kevin.jimenez5745";
+			String url = "jdbc:sqlite:DB/libroiglesia.db";
 
-			conn = DriverManager.getConnection(url, user, password);
+
+			conn = DriverManager.getConnection(url);
 			return conn;
 
 		} catch(SQLException e) {
