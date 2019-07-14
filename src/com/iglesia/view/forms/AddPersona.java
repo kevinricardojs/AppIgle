@@ -26,7 +26,7 @@ import com.iglesia.helpers.ImgChooser;
 import com.iglesia.helpers.JLabelColored;
 import com.iglesia.helpers.TextValidField;
 
-public class NewPersona extends JPanel{
+public class AddPersona extends JPanel{
 	public TextValidField nombres;
 	public TextValidField apellidos;
 	public TextValidField DPI;
@@ -47,7 +47,7 @@ public class NewPersona extends JPanel{
 	
 	public boolean valid;
 	
-	public NewPersona(){
+	public AddPersona(){
 		imagePath = "";
 		this.setLayout(new MigLayout("wrap 4, gap 5! 12!, insets 50 50"));
 		this.setBackground(Color.decode("#263238"));
@@ -57,9 +57,6 @@ public class NewPersona extends JPanel{
 		titulo.setForeground(Color.white);
 		this.add(titulo, "growx, span 4");
 		this.inicializarComponentes();
-		
-		
-
 		
 	}
 

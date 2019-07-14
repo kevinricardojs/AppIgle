@@ -1,6 +1,5 @@
-package com.iglesia.view;
+package com.iglesia.helpers;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 

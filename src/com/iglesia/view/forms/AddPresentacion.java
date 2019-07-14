@@ -2,6 +2,7 @@ package com.iglesia.view.forms;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.Date;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -15,15 +16,22 @@ import javax.swing.SwingConstants;
 import com.iglesia.helpers.BotonDef;
 import com.iglesia.helpers.JLabelColored;
 import com.iglesia.helpers.SearchTextField;
+import com.toedter.calendar.JDateChooser;
 
 import net.miginfocom.swing.MigLayout;
 
 public class AddPresentacion extends JPanel{
 	
-	private JComboBox padre;
-	private JComboBox madre;
-	private JComboBox ninio;
-	private BotonDef guardar;
+	public JList<String> padre;
+	public JList<String> madre;
+	public JList<String> ninio;
+	public JDateChooser fecha;
+	public BotonDef guardar;
+	private SearchTextField buscarPadre;
+	private SearchTextField buscarMadre;
+	private SearchTextField buscarNinio;
+	
+	private boolean valid;
 	
 	public  AddPresentacion() {
 		
@@ -40,26 +48,54 @@ public class AddPresentacion extends JPanel{
 	public void inicializarComponentes(){
 		this.add(new JLabelColored("Padre:", "#FFFFFF"));
 		
-		JList<String> lista = new JList();
-		SearchTextField buscador = new SearchTextField(lista);
-		lista.setBackground(Color.white);
-		this.add(buscador,"pushx, growx, span 3");
-		this.add(lista,"pushx, growx, span 3"); //data has type Object[]
+		padre = new JList();
+		buscarPadre = new SearchTextField(padre, 0);
+		this.add(buscarPadre,"pushx, growx, span 3");
+		this.add(padre,"pushx, growx, span 3"); //data has type Object[]
 		
 		
-		padre = new JComboBox();
-		this.add(padre,"pushx, growx, span 3");
 		
 		this.add(new JLabelColored("Madre:", "#FFFFFF"));
-		madre = new JComboBox(new String[] {"", "Esther Montepeque", "Brenda Gutierrez"});
+
+		madre = new JList();
+		buscarMadre = new SearchTextField(madre, 1);
+
+		this.add(buscarMadre,"pushx, growx, span 3");
 		this.add(madre,"pushx, growx, span 3");
 		
 		this.add(new JLabelColored("Niño:", "#FFFFFF"));
-		ninio = new JComboBox(new String[] {"","Iliana Gonzalez Montepeque"});
+		ninio = new JList();
 		this.add(ninio,"pushx, growx, span 3");
+		buscarNinio = new SearchTextField(ninio, 3);
+
+		this.add(buscarNinio,"pushx, growx, span 3");
+		this.add(ninio,"pushx, growx, span 3");
+		
+		this.add(new JLabelColored("Fecha Presentiación(*):", "#FFFFFF"));
+		this.fecha = new JDateChooser(new Date());
+		this.add(fecha,"pushx, growx, span 1");
 		
 		guardar = new BotonDef("Guardar");
 		this.add(guardar, "span 1, pushx, growx");
 	};
-
+	
+	
+	public boolean formValid() {
+		boolean valid = false;
+		if (!this.padre.isSelectionEmpty() && !this.madre.isSelectionEmpty() && !this.ninio.isSelectionEmpty()) {
+			valid = true;
+		}
+		return valid;
+	}
+	
+	public void clean() {
+		String[] vacia = {};
+		this.buscarPadre.setText("");
+		this.buscarMadre.setText("");
+		this.buscarNinio.setText("");
+		this.fecha.setDate(new Date());;
+		this.padre.setListData(vacia);
+		this.madre.setListData(vacia);
+		this.ninio.setListData(vacia);
+	}
 }

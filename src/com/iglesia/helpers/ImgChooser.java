@@ -23,16 +23,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import com.iglesia.view.forms.NewPersona;
+import com.iglesia.view.forms.AddPersona;
 
 public class ImgChooser implements ActionListener{
 	
 	 private JFileChooser fileChooser;
      private File file;
      int returnVal;
-     NewPersona padre;
+     AddPersona padre;
     
-     public ImgChooser(NewPersona padre){
+     public ImgChooser(AddPersona padre){
     	 this.padre = padre;
              fileChooser = new JFileChooser();
      }

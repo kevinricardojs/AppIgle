@@ -25,6 +25,7 @@ public class AddPresentacionController implements ActionListener{
 		panel.mainPanel.remove(panel.panelPresentacion);
 
 		panel.panelPresentacion = new AddPresentacion();
+		CapturarPresentacionController captura = new CapturarPresentacionController(panel.panelPresentacion);
 		panel.mainPanel.add(panel.panelPresentacion, "center, growy, width 700");
 		SwingUtilities.updateComponentTreeUI(panel);
 

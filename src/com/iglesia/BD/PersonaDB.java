@@ -7,7 +7,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 import com.iglesia.model.Persona;
-import com.iglesia.view.forms.NewPersona;
 
 
 public class PersonaDB extends ConexionDB{
@@ -39,16 +38,13 @@ public class PersonaDB extends ConexionDB{
 			doInsercion.setInt(14, p.getActivo());
 			
 			doInsercion.executeUpdate();
-			//Statement stmt = (Statement) conn.createStatement();
-			
-			//stmt.executeUpdate("insert into persona(nombres, fecha) values('" + p.getNombres() + "' ,'" + p.getFechaNac() +"');");
 			
 			JOptionPane.showMessageDialog(null, "Registro Exitoso");
 			return true;
 			
 		}catch (SQLException e) {
 			
-				JOptionPane.showMessageDialog(null, "DPI duplicado!", "Error de registro",JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "DPI duplicado!", "Error de registro",JOptionPane.ERROR_MESSAGE);
 			return false;
 			
 		}

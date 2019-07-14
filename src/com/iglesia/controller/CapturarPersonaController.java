@@ -15,14 +15,14 @@ import javax.imageio.ImageIO;
 
 import com.iglesia.BD.PersonaDB;
 import com.iglesia.model.Persona;
-import com.iglesia.view.forms.NewPersona;
+import com.iglesia.view.forms.AddPersona;
 
 public class CapturarPersonaController implements ActionListener{
 	Persona persona;
 	PersonaDB pDB;
-	NewPersona f;
+	AddPersona f;
 	
-	public CapturarPersonaController(NewPersona f) {
+	public CapturarPersonaController(AddPersona f) {
 		this.f = f;
 		f.guardar.addActionListener(this);
 

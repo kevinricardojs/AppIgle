@@ -8,9 +8,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.iglesia.helpers.FJPanel;
 import com.iglesia.view.forms.AddMatrimonio;
 import com.iglesia.view.forms.AddPresentacion;
-import com.iglesia.view.forms.NewPersona;
+import com.iglesia.view.forms.AddPersona;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -19,7 +20,7 @@ public class MarcoApp extends JFrame {
 	public JPIzquierda panelIzquierda;
 	public AddMatrimonio panelMatrimonio;
 	public AddPresentacion panelPresentacion;
-	public NewPersona panelPersona;
+	public AddPersona panelPersona;
 	
 	public MarcoApp() {
 		//Inicializando JFrame mayor
@@ -49,7 +50,7 @@ private void iniciarComponentes() {
 	 panelIzquierda = new JPIzquierda(this);
 	 panelMatrimonio = new AddMatrimonio();
 	 panelPresentacion = new AddPresentacion();
-	 panelPersona = new NewPersona();
+	 panelPersona = new AddPersona();
 	 
 	 
 	this.getContentPane().add(mainPanel);

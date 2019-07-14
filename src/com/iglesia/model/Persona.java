@@ -1,10 +1,6 @@
 package com.iglesia.model;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-import com.iglesia.view.forms.NewPersona;
+import com.iglesia.view.forms.AddPersona;
 
 public class Persona {
 	
@@ -24,7 +20,7 @@ public class Persona {
 	private int activo;
 	
 	
-	public Persona(NewPersona form){
+	public Persona(AddPersona form){
 		setNombres(form.nombres.getText());
 		setApellidos(form.apellidos.getText());
 		setDPI(form.DPI.getText());

@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 
 import com.iglesia.view.MarcoApp;
-import com.iglesia.view.forms.NewPersona;
+import com.iglesia.view.forms.AddPersona;
 
 import net.miginfocom.swing.MigLayout;
 
@@ -32,7 +32,7 @@ public class AddPersonaController implements ActionListener{
 		panel.mainPanel.remove(panel.panelMatrimonio);
 		panel.mainPanel.remove(panel.panelPresentacion);
 
-		panel.panelPersona = new NewPersona();
+		panel.panelPersona = new AddPersona();
 		
 		panel.mainPanel.add(panel.panelPersona, "center, growy, width 700");
 		

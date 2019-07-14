@@ -26,6 +26,7 @@ public class AddMatrimonioController implements ActionListener{
 		panel.mainPanel.remove(panel.panelPresentacion);
 
 		panel.panelMatrimonio = new AddMatrimonio();
+		CapturarMatrimonioController captura = new CapturarMatrimonioController(panel.panelMatrimonio);
 		panel.mainPanel.add(panel.panelMatrimonio, "center, growy, width 700");
 		SwingUtilities.updateComponentTreeUI(panel);
 
