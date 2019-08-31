@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.iglesia.helpers.FJPanel;
+import com.iglesia.view.Listas.UsuariosList;
 import com.iglesia.view.forms.AddMatrimonio;
 import com.iglesia.view.forms.AddPresentacion;
 import com.iglesia.view.forms.AddPersona;
@@ -21,6 +22,7 @@ public class MarcoApp extends JFrame {
 	public AddMatrimonio panelMatrimonio;
 	public AddPresentacion panelPresentacion;
 	public AddPersona panelPersona;
+	public UsuariosList panelUserList;
 	
 	public MarcoApp() {
 		//Inicializando JFrame mayor
@@ -51,6 +53,7 @@ private void iniciarComponentes() {
 	 panelMatrimonio = new AddMatrimonio();
 	 panelPresentacion = new AddPresentacion();
 	 panelPersona = new AddPersona();
+	 panelUserList = new UsuariosList();
 	 
 	 
 	this.getContentPane().add(mainPanel);

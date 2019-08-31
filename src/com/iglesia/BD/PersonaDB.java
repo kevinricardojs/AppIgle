@@ -1,7 +1,11 @@
 package com.iglesia.BD;
 
+import java.sql.Statement;
+import java.io.InputStream;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
@@ -19,7 +23,7 @@ public class PersonaDB extends ConexionDB{
 	public boolean insert() {
 		try {
 			Connection conn = (Connection) this.conectar();
-			String insercion = "INSERT INTO persona(nombres, apellidos, dpi, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String insercion = "INSERT INTO persona(nombres, apellidos, dpi, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo, foto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement doInsercion = (PreparedStatement) conn.prepareStatement(insercion);
 			
 			doInsercion.setString(1, p.getNombres());
@@ -37,16 +41,36 @@ public class PersonaDB extends ConexionDB{
 			doInsercion.setString(13, p.getFechaAsistir());
 			doInsercion.setInt(14, p.getActivo());
 			
+			doInsercion.setBinaryStream(15, new FileInputStream(p.getFoto()), (int)(p.getFoto().length()));
+			
 			doInsercion.executeUpdate();
 			
 			JOptionPane.showMessageDialog(null, "Registro Exitoso");
 			return true;
 			
-		}catch (SQLException e) {
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
 			
 			JOptionPane.showMessageDialog(null, "DPI duplicado!", "Error de registro",JOptionPane.ERROR_MESSAGE);
 			return false;
 			
+		}
+		
+	}
+	
+	
+	public static ResultSet all(){
+		PersonaDB p = new PersonaDB(null);
+		Statement doInsercion = null;
+		try {
+			Connection conn = p.conectar();
+			String query = "select * from persona";
+			 doInsercion = conn.createStatement();
+			 ResultSet rs = doInsercion.executeQuery(query);
+			return rs; 
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			return null;
 		}
 		
 	}

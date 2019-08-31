@@ -18,10 +18,13 @@ public class ConexionDB {
 	public Connection conectar() {
 		try {
 			// db parameters
-			String url = "jdbc:sqlite:DB/libroiglesia.db";
-
-
-			conn = DriverManager.getConnection(url);
+//			String url = "jdbc:sqlite:DB/libroiglesia.db";
+			String url = "jdbc:mariadb://localhost:3306/libroiglesia?autoReconnect=true&useSSL=false";
+			
+			String user = "root";
+			String password = "Ig13D10s";
+				
+			conn = DriverManager.getConnection(url, user, password);
 			return conn;
 
 		} catch(SQLException e) {

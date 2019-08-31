@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import com.iglesia.controller.AddMatrimonioController;
 import com.iglesia.controller.AddPersonaController;
 import com.iglesia.controller.AddPresentacionController;
+import com.iglesia.controller.VerListaController;
 import com.iglesia.helpers.BotonDef;
 
 import net.miginfocom.swing.MigLayout;
@@ -18,6 +19,7 @@ public class JPIzquierda extends JPanel{
 	private BtnPanIzq addPersona;
 	private BtnPanIzq addMatrimonio;
 	private BtnPanIzq addPresentacion;
+	private BtnPanIzq listaBtn;
 	private MarcoApp padre;
 	
 	
@@ -53,11 +55,19 @@ public class JPIzquierda extends JPanel{
 		// Agregando actionListener para reaccionar al click
 		AddPresentacionController controllerPresentacion = new AddPresentacionController(this.padre);
 		addPresentacion.addActionListener(controllerPresentacion);
+		
+		Icon lista = new ImageIcon("imagenes/persona.png");
+		listaBtn = new BtnPanIzq("Lista de Personas", personaIcono);
+		
+		// Agregando actionListener para reaccionar al click
+		VerListaController controllerLista = new VerListaController(this.padre);
+		listaBtn.addActionListener(controllerLista);
 
 		
 		this.add(addPersona, "");
 		this.add(addMatrimonio, "");
 		this.add(addPresentacion, "");
+		this.add(listaBtn, "");
 		
 	}
 	

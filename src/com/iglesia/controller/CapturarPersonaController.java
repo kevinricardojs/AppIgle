@@ -56,7 +56,9 @@ public class CapturarPersonaController implements ActionListener{
 				}
 
 				byte[] bytes = bos.toByteArray();
-
+				if(!(new File("fotos").exists())) {
+					new File("fotos").mkdirs();
+				}
 				File copia = new File("fotos\\FT-" + dpi + ".PNG");
 				BufferedImage img  = ImageIO.read(new ByteArrayInputStream(bytes));
 				ImageIO.write(img, "PNG", copia);

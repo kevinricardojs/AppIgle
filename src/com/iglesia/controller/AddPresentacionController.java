@@ -23,7 +23,8 @@ public class AddPresentacionController implements ActionListener{
 		panel.mainPanel.remove(panel.panelPersona);
 		panel.mainPanel.remove(panel.panelMatrimonio);
 		panel.mainPanel.remove(panel.panelPresentacion);
-
+		panel.mainPanel.remove(panel.panelUserList);
+		
 		panel.panelPresentacion = new AddPresentacion();
 		CapturarPresentacionController captura = new CapturarPresentacionController(panel.panelPresentacion);
 		panel.mainPanel.add(panel.panelPresentacion, "center, growy, width 700");

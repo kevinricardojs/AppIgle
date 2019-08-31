@@ -1,5 +1,10 @@
 package com.iglesia.model;
 
+import java.io.File;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.iglesia.view.forms.AddPersona;
 
 public class Persona {
@@ -18,6 +23,7 @@ public class Persona {
 	private String fechaAsistir;
 	private String fechaBautizo;
 	private int activo;
+	private File foto;
 	
 	
 	public Persona(AddPersona form){
@@ -30,11 +36,13 @@ public class Persona {
 		setCelular(form.celular.getText());
 		setTelEmpresa(form.tel_empresa.getText());
 		setEstadoCivil(form.estado_civil.getSelectedIndex());
-		setFechaNacimiento(form.fecha_nacimiento.getDate().toString());
-		setFechaCristiano(form.fecha_cristiano.getDate().toString());
-		setFechaAsistir(form.fecha_asistir.getDate().toString());
-		setFechaBautizo(form.fecha_bautizo.getDate().toString());
+		setFechaNacimiento(form.fecha_nacimiento.getDate());
+		setFechaCristiano(form.fecha_cristiano.getDate());
+		setFechaAsistir(form.fecha_asistir.getDate());
+		setFechaBautizo(form.fecha_bautizo.getDate());
 		setActivo(form.miembro_activo.getSelectedIndex());
+		setFoto(new File(form.imagePath));
+		
 	}
 	
 
@@ -114,16 +122,17 @@ public class Persona {
 		return fechaNacimiento;
 	}
 
-	public void setFechaNacimiento(String fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		
+		this.fechaNacimiento = formatDate(fechaNacimiento);
 	}
 
 	public String getFechaCristiano() {
 		return fechaCristiano;
 	}
 
-	public void setFechaCristiano(String fechaCristiano) {
-		this.fechaCristiano = fechaCristiano;
+	public void setFechaCristiano(Date fechaCristiano) {
+		this.fechaCristiano = formatDate(fechaCristiano);
 	}
 
 	public String getFechaAsistir() {
@@ -131,8 +140,8 @@ public class Persona {
 	}
 
 
-	public void setFechaAsistir(String fechaAsistir) {
-		this.fechaAsistir = fechaAsistir;
+	public void setFechaAsistir(Date fechaAsistir) {
+		this.fechaAsistir = formatDate(fechaAsistir);
 	}
 
 
@@ -141,8 +150,8 @@ public class Persona {
 	}
 
 
-	public void setFechaBautizo(String fechaBautizo) {
-		this.fechaBautizo = fechaBautizo;
+	public void setFechaBautizo(Date date) {
+		this.fechaBautizo = formatDate(date) ;
 	}
 
 
@@ -153,6 +162,22 @@ public class Persona {
 
 	public void setActivo(int activo) {
 		this.activo = activo;
+	}
+	
+	public String formatDate(Date f) {
+		DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+		
+		return dateFormat.format(f);
+	}
+
+
+	public File getFoto() {
+		return foto;
+	}
+
+
+	public void setFoto(File foto) {
+		this.foto = foto;
 	}
 
 

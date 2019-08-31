@@ -14,9 +14,6 @@ public class MatrimonioDB extends ConexionDB{
 		
 		public MatrimonioDB(Matrimonio p) {
 			this.p = p;
-			System.out.println(this.p.getEsposa());
-			System.out.println(this.p.getEsposo());
-			System.out.println(this.p.getFecha());
 		}
 		
 		public boolean insert() {

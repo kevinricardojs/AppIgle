@@ -15,4 +15,13 @@ public class JLabelColored extends JLabel{
 		this.setFont(new Font("Century Gothic", Font.BOLD, 15));
 	}
 	
+	public JLabelColored(String text, String color, String fondo) {
+		super(text);
+		this.setForeground(Color.decode(color));
+		this.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		this.setBackground(Color.decode(fondo));
+		this.setOpaque(true);
+	}
+	
+	
 }

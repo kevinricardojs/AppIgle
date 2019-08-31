@@ -64,7 +64,7 @@ public class SearchTextField extends JTextField{
 			
 			PreparedStatement doInsercion = (PreparedStatement) conn.prepareStatement(insercion);
 			
-			doInsercion.setString(1, "%" + texto+ "%");
+			doInsercion.setString(1, "%" + texto + "%");
 			doInsercion.setInt(2, genero);
 			lista =  doInsercion.executeQuery();
 			

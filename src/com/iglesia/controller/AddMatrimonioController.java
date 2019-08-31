@@ -24,7 +24,8 @@ public class AddMatrimonioController implements ActionListener{
 		panel.mainPanel.remove(panel.panelPersona);
 		panel.mainPanel.remove(panel.panelMatrimonio);
 		panel.mainPanel.remove(panel.panelPresentacion);
-
+		panel.mainPanel.remove(panel.panelUserList);
+		
 		panel.panelMatrimonio = new AddMatrimonio();
 		CapturarMatrimonioController captura = new CapturarMatrimonioController(panel.panelMatrimonio);
 		panel.mainPanel.add(panel.panelMatrimonio, "center, growy, width 700");
