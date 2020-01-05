@@ -11,6 +11,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.imageio.ImageIO;
 
 import com.iglesia.BD.PersonaDB;
@@ -25,19 +27,39 @@ public class CapturarPersonaController implements ActionListener{
 	public CapturarPersonaController(AddPersona f) {
 		this.f = f;
 		f.guardar.addActionListener(this);
-
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(this.f.formValid()) {
+		System.out.println(e.getActionCommand());
+		if(e.getActionCommand() == "Guardar") {
+			if(this.f.formValid()) {
+				this.persona = new Persona(f);
+				pDB = new PersonaDB(this.persona);
+				try {
+					if(pDB.insert() && this.guardarFoto(f.imagePath, f.DPI.getText())) {
+						f.clean();
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		}
+		else if(e.getActionCommand() == "Actualizar") {
 			this.persona = new Persona(f);
 			pDB = new PersonaDB(this.persona);
-			if(pDB.insert() && this.guardarFoto(f.imagePath, f.DPI.getText())) {
-				f.clean();
-			}
 			
+			try {
+				pDB.update();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
+		
+		
 	}
 
 	

@@ -21,7 +21,7 @@ public class Main {
 			 JOptionPane.showMessageDialog(null, "Gui no compatible");
 		 }
 		ConexionDB db = new ConexionDB();
-		marcoAplicacion = new MarcoApp();
+		marcoAplicacion = new MarcoApp("Libro Senda de Vida");
 
 	}
 

@@ -16,12 +16,12 @@ import com.iglesia.BD.ConexionDB;
 
 public class SearchTextField extends JTextField{
 	JList lista;
-	int genero;
+	int tipo;
 
-	public SearchTextField(JList lista, int genero) {
+	public SearchTextField(JList lista, int tipo) {
 		this.lista = lista;
 		this.lista.setBackground(Color.white);
-		this.genero = genero;
+		this.tipo = tipo;
 		eventos();
 	}
 	
@@ -53,11 +53,20 @@ public class SearchTextField extends JTextField{
 		ResultSet lista = null;
 		try {
 			String insercion;
-			if(this.genero == 3) {
-				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ? and sexo != ?";
+			if(this.tipo == 0) {
+				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ? and sexo = 0";
+			}
+			else if(this.tipo == 1){
+				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ? AND sexo = 1";
+			}
+			else if(this.tipo == 3) {
+				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ? AND sexo = 0 and estado_civil = 0";
+			}
+			else if(this.tipo == 4) {
+				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ? AND sexo = 1 and estado_civil = 0";
 			}
 			else {
-				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ? AND sexo = ?";
+				insercion = "SELECT id, nombres, apellidos FROM persona where nombres like ?";
 			}
 			ConexionDB conexion = new ConexionDB();
 			Connection conn = (Connection) conexion.conectar();
@@ -65,7 +74,6 @@ public class SearchTextField extends JTextField{
 			PreparedStatement doInsercion = (PreparedStatement) conn.prepareStatement(insercion);
 			
 			doInsercion.setString(1, "%" + texto + "%");
-			doInsercion.setInt(2, genero);
 			lista =  doInsercion.executeQuery();
 			
 			return lista;
@@ -92,12 +100,12 @@ public class SearchTextField extends JTextField{
 
 
 	public int getGenero() {
-		return genero;
+		return tipo;
 	}
 
 
-	public void setGenero(int genero) {
-		this.genero = genero;
+	public void setGenero(int tipo) {
+		this.tipo = tipo;
 	}
 	
 	public void prepararLista() {

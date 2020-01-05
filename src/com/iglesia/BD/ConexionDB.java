@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionDB {
-	private Connection conn = null;
+	protected Connection conn = null;
 
 	public ConexionDB() {
 		conectar();

@@ -3,10 +3,10 @@ package com.iglesia.helpers;
 import javax.swing.JButton;
 
 public class OpenButton extends JButton{
-	String DPI;
-	public OpenButton(String texto, String dpi) {
+	public int id_persona;
+	public OpenButton(String texto, int id) {
 		super(texto);
-		this.DPI = dpi;
+		this.id_persona = id;
 	}
 
 }

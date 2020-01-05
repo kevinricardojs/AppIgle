@@ -44,15 +44,16 @@ public class AddPersona extends JPanel{
 	public JComboBox<Object> miembro_activo;
 	public BotonDef guardar;
 	public String imagePath;
+	public int id;
 	
 	public boolean valid;
 	
-	public AddPersona(){
+	public AddPersona(String title){
 		imagePath = "";
 		this.setLayout(new MigLayout("wrap 4, gap 5! 12!, insets 50 50"));
 		this.setBackground(Color.decode("#263238"));
 		Icon plus = new ImageIcon("imagenes/plus.png");
-		JLabel titulo = new JLabel("Añadir Nueva Persona", plus, SwingConstants.LEFT);
+		JLabel titulo = new JLabel(title, plus, SwingConstants.LEFT);
 		titulo.setFont(new Font("Arial", Font.BOLD, 25));
 		titulo.setForeground(Color.white);
 		this.add(titulo, "growx, span 4");
@@ -69,8 +70,8 @@ public class AddPersona extends JPanel{
 		apellidos = new TextValidField(5, 50, true);
 		this.add(apellidos, "pushx, growx, span 3");
 		
-		this.add(new JLabelColored("DPI(*):", "#FFFFFF" ));
-		this.DPI = new TextValidField(13, 13, true);
+		this.add(new JLabelColored("DPI:", "#FFFFFF" ));
+		this.DPI = new TextValidField(13, 13, false);
 		this.add(DPI,"pushx, growx");
 		
 		this.add(new JLabelColored("Sexo(*):", "#FFFFFF"));
@@ -110,7 +111,7 @@ public class AddPersona extends JPanel{
 		this.fecha_asistir = new JDateChooser(new Date());
 		this.add(fecha_asistir,"pushx, growx");
 		
-		this.add(new JLabelColored("Primer asistencia(*):", "#FFFFFF"));
+		this.add(new JLabelColored("Fecha Bautizo(*):", "#FFFFFF"));
 		this.fecha_bautizo = new JDateChooser(new Date());
 		this.add(fecha_bautizo,"pushx, growx");
 		
@@ -140,7 +141,7 @@ public class AddPersona extends JPanel{
 	}
 	
 	public boolean formValid() {
-		if(this.nombres.getValid() && this.apellidos.getValid() && this.DPI.getValid() && this.direccion.getValid() && this .celular.getValid() && this.imagePath != "imagenes/camara.PNG" && this.imagePath != "" ) {
+		if(this.nombres.getValid() && this.apellidos.getValid() && this.direccion.getValid() && this .celular.getValid() && this.imagePath != "imagenes/camara.PNG" && this.imagePath != "" ) {
 			this.valid = true;;
 		}
 		else {
@@ -162,6 +163,7 @@ public class AddPersona extends JPanel{
 		celular.setText("");
 		tel_empresa.setText("");
 		estado_civil.setSelectedIndex(0);
+		miembro_activo.setSelectedIndex(0);
 		fecha_nacimiento.setDate(new Date());
 		fecha_cristiano.setDate(new Date());
 		fotografia_url.setIcon(Helper.redimensionarIcono(new ImageIcon("imagenes/camara.PNG"), 250, 250));

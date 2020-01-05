@@ -1,5 +1,9 @@
 package com.iglesia.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.iglesia.view.forms.AddPresentacion;
 
 public class Presentacion {
@@ -16,7 +20,7 @@ public class Presentacion {
 		setPadre(padre);
 		setMadre(madre);
 		setNinio(ninio);
-		setFecha(form.fecha.getDate().toString());
+		setFecha(form.fecha.getDate());
 	}
 
 	public int getPadre() {
@@ -47,8 +51,10 @@ public class Presentacion {
 		return fecha;
 	}
 
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFecha(Date fecha) {
+		DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+		
+		this.fecha = dateFormat.format(fecha);
 	}
 	
 

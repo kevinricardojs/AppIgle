@@ -7,8 +7,11 @@ import java.awt.Dimension;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 import com.iglesia.helpers.FJPanel;
+import com.iglesia.view.Listas.MatrimoniosList;
+import com.iglesia.view.Listas.PresentacionesList;
 import com.iglesia.view.Listas.UsuariosList;
 import com.iglesia.view.forms.AddMatrimonio;
 import com.iglesia.view.forms.AddPresentacion;
@@ -23,8 +26,12 @@ public class MarcoApp extends JFrame {
 	public AddPresentacion panelPresentacion;
 	public AddPersona panelPersona;
 	public UsuariosList panelUserList;
+	public MatrimoniosList panelMatrimonioList;
+	public PresentacionesList panelPresentacionList;
 	
-	public MarcoApp() {
+	public MarcoApp(String titulo) {
+		
+		super(titulo);
 		//Inicializando JFrame mayor
 
 		// Hacer visible
@@ -52,17 +59,25 @@ private void iniciarComponentes() {
 	 panelIzquierda = new JPIzquierda(this);
 	 panelMatrimonio = new AddMatrimonio();
 	 panelPresentacion = new AddPresentacion();
-	 panelPersona = new AddPersona();
+	 panelPersona = new AddPersona("Añadir Persona");
 	 panelUserList = new UsuariosList();
+	 panelMatrimonioList = new MatrimoniosList();
+	 panelPresentacionList = new PresentacionesList();
 	 
 	 
-	this.getContentPane().add(mainPanel);
+	//this.getContentPane().add(mainPanel);
+	JScrollPane scroll = new JScrollPane(this.mainPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	scroll.getVerticalScrollBar().setUnitIncrement(14);
+	this.add(scroll);
+	this.mainPanel.setBackground(Color.decode("#10174d"));
 	this.setBackground(Color.decode("#232F34"));
 	
 
 	mainPanel.setLayout(new MigLayout("fillx", "0[grow]0", "0[grow]0[]0"));
 	
 	mainPanel.add(panelIzquierda, "north");
+	
+	
 }
 	
 }

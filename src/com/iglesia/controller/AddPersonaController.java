@@ -32,8 +32,10 @@ public class AddPersonaController implements ActionListener{
 		panel.mainPanel.remove(panel.panelMatrimonio);
 		panel.mainPanel.remove(panel.panelPresentacion);
 		panel.mainPanel.remove(panel.panelUserList);
+		panel.mainPanel.remove(panel.panelMatrimonioList);
+		panel.mainPanel.remove(panel.panelPresentacionList);
 
-		panel.panelPersona = new AddPersona();
+		panel.panelPersona = new AddPersona("Añadir Persona");
 		
 		panel.mainPanel.add(panel.panelPersona, "center, growy, width 700");
 		

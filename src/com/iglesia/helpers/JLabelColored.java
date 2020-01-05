@@ -12,7 +12,7 @@ public class JLabelColored extends JLabel{
 	public JLabelColored(String text, String color) {
 		super(text);
 		this.setForeground(Color.decode(color));
-		this.setFont(new Font("Century Gothic", Font.BOLD, 15));
+		this.setFont(new Font("Century Gothic", Font.BOLD, 12));
 	}
 	
 	public JLabelColored(String text, String color, String fondo) {

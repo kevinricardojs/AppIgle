@@ -66,7 +66,7 @@ public class AddPresentacion extends JPanel{
 		this.add(new JLabelColored("Niño:", "#FFFFFF"));
 		ninio = new JList();
 		this.add(ninio,"pushx, growx, span 3");
-		buscarNinio = new SearchTextField(ninio, 3);
+		buscarNinio = new SearchTextField(ninio, 10);
 
 		this.add(buscarNinio,"pushx, growx, span 3");
 		this.add(ninio,"pushx, growx, span 3");

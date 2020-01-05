@@ -2,6 +2,7 @@ package com.iglesia.controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
@@ -26,8 +27,13 @@ public class CapturarMatrimonioController implements ActionListener {
 		if(this.form.formValid()) {
 			this.matrimonio = new Matrimonio(this.form);
 			this.pDB = new MatrimonioDB(this.matrimonio);
-			if(pDB.insert()) {
-				this.form.clean();
+			try {
+				if(pDB.insert()) {
+					this.form.clean();
+				}
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 		

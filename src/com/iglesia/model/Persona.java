@@ -24,6 +24,7 @@ public class Persona {
 	private String fechaBautizo;
 	private int activo;
 	private File foto;
+	private int id;
 	
 	
 	public Persona(AddPersona form){
@@ -42,6 +43,7 @@ public class Persona {
 		setFechaBautizo(form.fecha_bautizo.getDate());
 		setActivo(form.miembro_activo.getSelectedIndex());
 		setFoto(new File(form.imagePath));
+		setId(form.id);
 		
 	}
 	
@@ -66,8 +68,8 @@ public class Persona {
 		return DPI;
 	}
 
-	public void setDPI(String dPI) {
-		DPI = dPI;
+	public void setDPI(String dpi) {
+		DPI = dpi;
 	}
 
 	public int getSexo() {
@@ -178,6 +180,16 @@ public class Persona {
 
 	public void setFoto(File foto) {
 		this.foto = foto;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 

@@ -10,7 +10,9 @@ import javax.swing.JPanel;
 import com.iglesia.controller.AddMatrimonioController;
 import com.iglesia.controller.AddPersonaController;
 import com.iglesia.controller.AddPresentacionController;
-import com.iglesia.controller.VerListaController;
+import com.iglesia.controller.ListaMatrimonioController;
+import com.iglesia.controller.ListaPersonaController;
+import com.iglesia.controller.ListaPresentacionController;
 import com.iglesia.helpers.BotonDef;
 
 import net.miginfocom.swing.MigLayout;
@@ -20,6 +22,8 @@ public class JPIzquierda extends JPanel{
 	private BtnPanIzq addMatrimonio;
 	private BtnPanIzq addPresentacion;
 	private BtnPanIzq listaBtn;
+	private BtnPanIzq listaMatrinomio;
+	private BtnPanIzq listaBebes;
 	private MarcoApp padre;
 	
 	
@@ -56,18 +60,33 @@ public class JPIzquierda extends JPanel{
 		AddPresentacionController controllerPresentacion = new AddPresentacionController(this.padre);
 		addPresentacion.addActionListener(controllerPresentacion);
 		
-		Icon lista = new ImageIcon("imagenes/persona.png");
-		listaBtn = new BtnPanIzq("Lista de Personas", personaIcono);
+		Icon personas = new ImageIcon("imagenes/personas.png");
+		listaBtn = new BtnPanIzq("Personas", personas);
 		
 		// Agregando actionListener para reaccionar al click
-		VerListaController controllerLista = new VerListaController(this.padre);
+		ListaPersonaController controllerLista = new ListaPersonaController(this.padre);
 		listaBtn.addActionListener(controllerLista);
+		
+		Icon matrimonios = new ImageIcon("imagenes/boda.png");
+		listaMatrinomio = new BtnPanIzq("Matrimonios", matrimonios);
+		
+		// Agregando actionListener para reaccionar al click
+		ListaMatrimonioController controllerListaM = new ListaMatrimonioController(this.padre);
+		listaMatrinomio.addActionListener(controllerListaM);
+		
+		
+		Icon bebes = new ImageIcon("imagenes/bebes.png");
+		listaBebes = new BtnPanIzq("Presentaciones", bebes);
 
+		ListaPresentacionController controllerListaP = new ListaPresentacionController(this.padre);
+		listaBebes.addActionListener(controllerListaP);
 		
 		this.add(addPersona, "");
 		this.add(addMatrimonio, "");
 		this.add(addPresentacion, "");
 		this.add(listaBtn, "");
+		this.add(listaMatrinomio, "");
+		this.add(listaBebes, "");
 		
 	}
 	

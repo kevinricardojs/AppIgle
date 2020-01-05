@@ -41,7 +41,7 @@ public class AddMatrimonio extends JPanel{
 	public void inicializarComponentes(){
 		this.add(new JLabelColored("Esposo:", "#FFFFFF"));
 		esposo = new JList();
-		buscarEsposo = new SearchTextField(esposo, 0);
+		buscarEsposo = new SearchTextField(esposo, 3);
 		this.add(buscarEsposo,"pushx, growx, span 3");
 		this.add(esposo,"pushx, growx, span 3"); //data has type Object[]
 		
@@ -50,7 +50,7 @@ public class AddMatrimonio extends JPanel{
 		this.add(new JLabelColored("Esposa:", "#FFFFFF"));
 
 		esposa = new JList();
-		buscarEsposa = new SearchTextField(esposa, 1);
+		buscarEsposa = new SearchTextField(esposa, 4);
 
 		this.add(buscarEsposa,"pushx, growx, span 3");
 		this.add(esposa,"pushx, growx, span 3");

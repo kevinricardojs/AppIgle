@@ -1,5 +1,9 @@
 package com.iglesia.model;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.iglesia.view.forms.AddMatrimonio;
 
 public class Matrimonio {
@@ -8,13 +12,11 @@ public class Matrimonio {
 	private String fecha;
 	
 	public Matrimonio(AddMatrimonio form) {
-		System.out.println(esposo);
 		int esposo = Integer.parseInt(form.esposo.getSelectedValue().split("-")[0]);
 		int esposa = Integer.parseInt(form.esposa.getSelectedValue().split("-")[0]);
 		setEsposo(esposo);
 		setEsposa(esposa);
-		setFecha(form.fecha.getDate().toString());
-		System.out.println(esposo);
+		setFecha(form.fecha.getDate());
 	}
 	
 	public int getEsposo() {
@@ -32,8 +34,9 @@ public class Matrimonio {
 	public String getFecha() {
 		return fecha;
 	}
-	public void setFecha(String fecha) {
-		this.fecha = fecha;
+	public void setFecha(Date fecha) {
+		DateFormat dateFormat = new SimpleDateFormat("yyy-MM-dd");
+		this.fecha = dateFormat.format(fecha);
 	}
 	
 	
