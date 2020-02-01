@@ -4,16 +4,30 @@ import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Logger;
 
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
+import com.iglesia.BD.ConexionDB;
 import com.iglesia.BD.PersonaDB;
 import com.iglesia.crud.EditarPersona;
+import com.iglesia.crud.RptPersona;
 import com.iglesia.crud.VerPersona;
 import com.iglesia.helpers.OpenButton;
+import com.itextpdf.text.log.Level;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class VerPersonaController implements ActionListener {
@@ -28,9 +42,36 @@ public class VerPersonaController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
+		/*try {
+            ConexionDB con = new ConexionDB();
+            Connection conn =  (Connection) con.conectar();
+            
+            JasperReport reporte = null;
+            String path = "src\\rpt\\Personas.jasper";
+            
+            Map parametro = new HashMap();
+            //parametro.put("id_estado", 36);
+            
+            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, conn);
+            
+            
+            JasperViewer view = new JasperViewer(jprint, false);
+            
+            //view.setDefaultCloseOperation(1);
+            
+            view.setVisible(true);
+            
+        } catch (JRException ex) {
+        System.out.println(ex.getMessage());
+            //Logger.getLogger(Inicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+		*/
 		 try {
 			 if(e.getActionCommand() == "Ver") {
-				 VerPersona v = new VerPersona(this.btn.id_persona);
+				 RptPersona v = new RptPersona(this.btn.id_persona);
 			 }
 			 else if(e.getActionCommand() == "Editar"){
 				 EditarPersona edit = new EditarPersona(this.btn.id_persona);

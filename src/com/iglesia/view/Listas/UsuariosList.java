@@ -10,29 +10,43 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import com.iglesia.BD.PersonaDB;
+import com.iglesia.controller.FiltrosController;
 import com.iglesia.controller.VerPersonaController;
+import com.iglesia.helpers.BotonDef;
 import com.iglesia.helpers.JLabelColored;
 import com.iglesia.helpers.OpenButton;
+import com.iglesia.helpers.SearchTextField;
+import com.iglesia.helpers.TextValidField;
+import com.toedter.calendar.JDateChooser;
 
 import net.miginfocom.swing.MigLayout;
 
 public class UsuariosList extends JPanel{
-	private ResultSet lista; 
-	JPanel contenedor;
+	public ResultSet lista; 
+	public JPanel contenedor;
+	public JComboBox<Object> sexo;
+	public JComboBox<Object> estado_civil; 
+	public JComboBox<Object> miembro_activo;
+	public BotonDef consulta;
+	public JTextField campo;
+	public JPanel resultado;
+	public int id;
 	
 
 
 	public UsuariosList() {
-		this.setLayout(new MigLayout("wrap, gap 5! 12!, insets 50 50"));
+		this.setLayout(new MigLayout("wrap 6, gap 5! 12!, insets 50 50"));
 		this.setBackground(Color.decode("#263238"));
 		Icon plus = new ImageIcon("imagenes/plus.png");
 		JLabel titulo = new JLabel("Listado de registros", plus, SwingConstants.LEFT);
@@ -41,11 +55,34 @@ public class UsuariosList extends JPanel{
 		contenedor = new JPanel();
 		contenedor.setLayout(new MigLayout("wrap 5, fillx"));
 		contenedor.setBorder(BorderFactory.createLoweredBevelBorder());
+		
+		this.add(titulo, "span 6, growx, pushx");
+		this.filtros();
+		this.add(contenedor, "span 6, growx, pushx");
 
-		this.add(titulo, "growx, pushx");
-		this.add(contenedor, "growx, pushx");
-		this.lista =  PersonaDB.all();
-		this.listar();
+	}
+	
+	public void filtros(){
+		
+		campo = new JTextField();
+		this.add(campo, "span 4, growx, pushx, wrap");
+		
+		this.add(new JLabelColored("Sexo(*):", "#FFFFFF"), "span 1");
+		sexo = new JComboBox<Object>(new String[] {" ", "M", "F"});
+		this.add(sexo,"span 1, pushx, growx ");
+		
+		this.add(new JLabelColored("Estado Civil(*):", "#FFFFFF"), "span 1");
+		estado_civil = new JComboBox<Object>(new String[] {" ","Soltero/a", "Casado/a", "Viudo/a"});
+		this.add(estado_civil,"span 1, pushx, growx ");
+		
+		this.add(new JLabelColored("Miembro Activo(*):", "#FFFFFF"), "span 1");
+		miembro_activo = new JComboBox<Object>(new String[] {" ", "No", "Si"});
+		this.add(miembro_activo,"span 1, pushx, growx");
+		
+		FiltrosController f = new FiltrosController(this);
+		consulta = new BotonDef("Buscar");
+		consulta.addActionListener(f);
+		this.add(consulta, "span 4, growx, pushx, wrap");
 	}
 	
 	
@@ -58,24 +95,28 @@ public class UsuariosList extends JPanel{
 		
 		int i = 1;
 		try {
-			while (this.lista.next()) {
-				contenedor.add(new JLabel(Integer.toString(i)));
-				contenedor.add(new JLabelColored(lista.getString("nombres"), "#000000"), "sg nombre");
-				contenedor.add(new JLabelColored(lista.getString("apellidos"),"#000000"), "sg apellido");
-				contenedor.add(new JLabelColored(lista.getString("cel"),"#000000"), "sg cel");
-				OpenButton ver = new OpenButton("Ver", lista.getInt("id"));
-				OpenButton update = new OpenButton("Editar", lista.getInt("id"));
-				OpenButton del = new OpenButton("Borrar", lista.getInt("id"));
-				
-				VerPersonaController v = new VerPersonaController(ver);
-				VerPersonaController u = new VerPersonaController(update);
-				VerPersonaController d = new VerPersonaController(del);
-				
-				contenedor.add(ver, "split 3");
-				contenedor.add(update);
-				contenedor.add(del, "wrap");
-				i++;
+			
+				while (this.lista.next()) {
+					for (int j = 0; j < 20; j++) {
+					contenedor.add(new JLabel(Integer.toString(i)));
+					contenedor.add(new JLabelColored(lista.getString("nombres"), "#000000"), "sg nombre");
+					contenedor.add(new JLabelColored(lista.getString("apellidos"),"#000000"), "sg apellido");
+					contenedor.add(new JLabelColored(lista.getString("cel"),"#000000"), "sg cel");
+					OpenButton ver = new OpenButton("Ver", lista.getInt("id"));
+					OpenButton update = new OpenButton("Editar", lista.getInt("id"));
+					OpenButton del = new OpenButton("Borrar", lista.getInt("id"));
+					
+					VerPersonaController v = new VerPersonaController(ver);
+					VerPersonaController u = new VerPersonaController(update);
+					VerPersonaController d = new VerPersonaController(del);
+					
+					contenedor.add(ver, "split 3");
+					contenedor.add(update);
+					contenedor.add(del, "wrap");
+					i++;
+				}	
 			}
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

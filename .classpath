@@ -2,8 +2,17 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="jar/jcalendar-1.4.jar"/>
-	<classpathentry kind="lib" path="jar/mariadb-java-client-2.4.3.jar"/>
-	<classpathentry kind="lib" path="jar/miglayout-4.0-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/AbsoluteLayout.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/itextpdf-5.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/itext-pdfa-5.5.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/jasperreports-6.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/mariadb-java-client-2.4.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/miglayout-4.0-swing.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/poi-3.10.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/groovy-2.5.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

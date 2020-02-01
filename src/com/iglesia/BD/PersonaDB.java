@@ -25,7 +25,7 @@ public class PersonaDB extends ConexionDB{
 			Connection conn = (Connection) this.conectar();
 			conn.setAutoCommit(false);
 			
-			String persona = "INSERT INTO persona(nombres, apellidos, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo, foto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String persona = "INSERT INTO persona(nombres, apellidos, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo, ministerio, foto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement doInsercion = (PreparedStatement) conn.prepareStatement(persona, Statement.RETURN_GENERATED_KEYS);
 			
 			doInsercion.setString(1, p.getNombres());
@@ -41,8 +41,8 @@ public class PersonaDB extends ConexionDB{
 			doInsercion.setString(11, p.getFechaBautizo());
 			doInsercion.setString(12, p.getFechaAsistir());
 			doInsercion.setInt(13, p.getActivo());
-			
-			doInsercion.setBinaryStream(14, new FileInputStream(p.getFoto()), (int)(p.getFoto().length()));
+			doInsercion.setInt(14, 0);
+			doInsercion.setBinaryStream(15, new FileInputStream(p.getFoto()), (int)(p.getFoto().length()));
 			
 			doInsercion.executeUpdate();
 			System.out.println(p.getDPI().length());
@@ -139,14 +139,24 @@ public class PersonaDB extends ConexionDB{
 		
 	}
 	
-	public static ResultSet all(){
+	public static ResultSet all(String consulta, int sexo, int estado_civil, int miembro_activo){
 		PersonaDB p = new PersonaDB(null);
-		Statement doInsercion = null;
 		try {
 			Connection conn = p.conectar();
-			String query = "SELECT p.id, p.nombres, p.apellidos, p.cel, d.dpi FROM persona AS p LEFT JOIN dpi AS d ON p.id = d.id_persona";
-			 doInsercion = conn.createStatement();
-			 ResultSet rs = doInsercion.executeQuery(query);
+			String query = "SELECT p.id, p.nombres, p.apellidos, p.cel, d.dpi FROM persona AS p LEFT JOIN dpi AS d ON p.id = d.id_persona WHERE p.nombres LIKE ? AND p.sexo LIKE ? AND p.estado_civil LIKE ? AND p.activo LIKE ?";
+			
+			PreparedStatement statment = (PreparedStatement) conn.prepareStatement(query);
+			statment.setString(1, "%" + consulta + "%");
+			
+			statment.setString(2, "%" + parametro(sexo) + "%");
+			
+			statment.setString(3, "%" + parametro(estado_civil) + "%");
+			
+			statment.setString(4, "%" + parametro(miembro_activo) + "%");
+			 System.out.println(statment.toString());
+
+			
+			 ResultSet rs = statment.executeQuery();
 			return rs; 
 		} catch (SQLException e) {
 			JOptionPane.showMessageDialog(null, e.getMessage());
@@ -190,5 +200,21 @@ public class PersonaDB extends ConexionDB{
 			JOptionPane.showMessageDialog(null, e.getMessage());
 			return false;
 		}
+	}
+	
+	private static String parametro(int a) {
+		if (a == 0) {
+			return "";
+		}
+		else if (a == 1) {
+			return "0";
+		}
+		else if(a == 2) {
+			return "1";
+		}
+		else {
+			return "3";
+		}
+		
 	}
 }
