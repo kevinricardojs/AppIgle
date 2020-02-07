@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -21,7 +22,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 
 import com.iglesia.BD.PersonaDB;
-import com.iglesia.controller.FiltrosController;
+import com.iglesia.controller.FiltrosPersonaController;
 import com.iglesia.controller.VerPersonaController;
 import com.iglesia.helpers.BotonDef;
 import com.iglesia.helpers.JLabelColored;
@@ -63,7 +64,11 @@ public class UsuariosList extends JPanel{
 	}
 	
 	public void filtros(){
+		JLabel titulo = new JLabel("Buscar nombre:",SwingConstants.LEFT);
+		titulo.setFont(new Font("Arial", Font.BOLD, 15));
+		titulo.setForeground(Color.white);
 		
+		this.add(titulo, "span 6, growx, pushx");
 		campo = new JTextField();
 		this.add(campo, "span 4, growx, pushx, wrap");
 		
@@ -79,7 +84,7 @@ public class UsuariosList extends JPanel{
 		miembro_activo = new JComboBox<Object>(new String[] {" ", "No", "Si"});
 		this.add(miembro_activo,"span 1, pushx, growx");
 		
-		FiltrosController f = new FiltrosController(this);
+		FiltrosPersonaController f = new FiltrosPersonaController(this);
 		consulta = new BotonDef("Buscar");
 		consulta.addActionListener(f);
 		this.add(consulta, "span 4, growx, pushx, wrap");
@@ -97,7 +102,6 @@ public class UsuariosList extends JPanel{
 		try {
 			
 				while (this.lista.next()) {
-					for (int j = 0; j < 20; j++) {
 					contenedor.add(new JLabel(Integer.toString(i)));
 					contenedor.add(new JLabelColored(lista.getString("nombres"), "#000000"), "sg nombre");
 					contenedor.add(new JLabelColored(lista.getString("apellidos"),"#000000"), "sg apellido");
@@ -113,12 +117,10 @@ public class UsuariosList extends JPanel{
 					contenedor.add(ver, "split 3");
 					contenedor.add(update);
 					contenedor.add(del, "wrap");
-					i++;
-				}	
 			}
 			
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage());
 		}
 		
 	}

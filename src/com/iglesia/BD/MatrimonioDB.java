@@ -54,14 +54,31 @@ public class MatrimonioDB extends ConexionDB{
 		}
 	
 		
-		public static ResultSet all(){
+		public static ResultSet busqueda(String consulta){
 			MatrimonioDB p = new MatrimonioDB(null);
 			Statement doInsercion = null;
 			try {
 				Connection conn = p.conectar();
-				String query = "SELECT matri.id, h.nombres AS 'hnombres', h.apellidos AS 'hapellidos', m.nombres AS 'mnombres', m.apellidos AS 'mapellidos', matri.fecha FROM matrimonio AS matri LEFT JOIN persona AS h ON h.id = matri.esposo_id LEFT JOIN persona AS m ON m.id = matri.esposa_id";
-				 doInsercion = conn.createStatement();
-				 ResultSet rs = doInsercion.executeQuery(query);
+				String query = "SELECT" +
+						" matri.id, " +
+						" esposo.nombres 'esposo_nombres', " +
+						" esposo.apellidos 'esposo_apellidos', " +
+						" esposa.nombres 'esposa_nombres', " +
+						" esposa.apellidos 'esposa_apellidos', " +
+						" matri.fecha " + 
+						" from matrimonio AS matri " +
+						" LEFT JOIN persona AS esposo ON matri.esposo_id = esposo.id " +
+						" LEFT JOIN persona AS esposa ON matri.esposa_id = esposa.id " +
+						" WHERE matri.esposo_id in " +  
+						"( SELECT id FROM persona WHERE nombres LIKE ? AND estado_civil = 1 ) " + 
+						" OR matri.esposa_id in " +
+						" ( SELECT id FROM persona WHERE nombres LIKE ? AND estado_civil = 1 )";
+				
+				PreparedStatement statment = (PreparedStatement) conn.prepareStatement(query);
+				statment.setString(1, "%" + consulta + "%");
+				statment.setString(2, "%" + consulta + "%");
+				
+				ResultSet rs = statment.executeQuery();
 				return rs; 
 			} catch (SQLException e) {
 				JOptionPane.showMessageDialog(null, e.getMessage());

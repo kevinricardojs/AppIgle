@@ -56,6 +56,42 @@ public class PresentacionDB extends ConexionDB{
 		
 	}
 	
+	public static ResultSet busqueda(String consulta){
+		PresentacionDB p = new PresentacionDB(null);
+		Statement doInsercion = null;
+		try {
+			Connection conn = p.conectar();
+			String query = "SELECT  " +
+								"pre.id_presentacion,  " +
+								"CONCAT(pa.nombres, ', ', pa.apellidos) AS padre,  " +
+								"CONCAT(ma.nombres, ', ', ma.apellidos) AS madre,  " +
+								"CONCAT(hi.nombres, ', ', hi.apellidos) AS hijo,  " +
+								"pre.fecha " +
+							"FROM presentacion AS pre  " +
+								"LEFT JOIN persona AS pa ON pre.padre_id = pa.id  " +
+								"LEFT JOIN persona AS ma ON pre.madre_id = ma.id  " +
+								"LEFT JOIN persona AS hi ON pre.ninio_id = hi.id " +
+							"WHERE pre.padre_id IN " +
+								"( SELECT id FROM persona WHERE nombres LIKE ?) " +
+							"OR pre.madre_id IN " +
+								"( SELECT id FROM persona WHERE nombres LIKE ?) " +
+							"OR pre.ninio_id IN " +
+								"( SELECT id FROM persona WHERE nombres LIKE ?) "; 
+			
+			PreparedStatement statment = (PreparedStatement) conn.prepareStatement(query);
+			statment.setString(1, "%" + consulta + "%");
+			statment.setString(2, "%" + consulta + "%");
+			statment.setString(3, "%" + consulta + "%");
+			
+			ResultSet rs = statment.executeQuery();
+			return rs; 
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			return null;
+		}
+		
+	}
+	
 	public static ResultSet verPresentacion(int id){
 		PresentacionDB p = new PresentacionDB(null);
 		Statement doInsercion = null;

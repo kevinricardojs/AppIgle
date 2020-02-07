@@ -10,22 +10,27 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 import com.iglesia.BD.MatrimonioDB;
 import com.iglesia.BD.PresentacionDB;
+import com.iglesia.controller.FiltrosMatrimonioController;
+import com.iglesia.controller.FiltrosPresentacionController;
 import com.iglesia.controller.VerMatrimonioController;
 import com.iglesia.controller.VerPersonaController;
 import com.iglesia.controller.VerPresentacionController;
+import com.iglesia.helpers.BotonDef;
 import com.iglesia.helpers.JLabelColored;
 import com.iglesia.helpers.OpenButton;
 
 import net.miginfocom.swing.MigLayout;
 
 public class PresentacionesList extends JPanel{
-	private ResultSet lista; 
-	JPanel contenedor;
+	public ResultSet lista; 
+	public JTextField campo;
+	public BotonDef consulta;
+	public JPanel contenedor;
 	
 
 
@@ -41,9 +46,26 @@ public class PresentacionesList extends JPanel{
 		contenedor.setBorder(BorderFactory.createLoweredBevelBorder());
 
 		this.add(titulo, "growx, pushx");
+		this.filtros();
 		this.add(contenedor, "growx, pushx");
-		this.lista =  PresentacionDB.all();
-		this.listar();
+		//this.lista =  PresentacionDB.all();
+		//this.listar();
+	}
+	
+	
+	public void filtros(){
+		JLabel titulo = new JLabel("Buscar nombre:",SwingConstants.LEFT);
+		titulo.setFont(new Font("Arial", Font.BOLD, 15));
+		titulo.setForeground(Color.white);
+		
+		this.add(titulo, "span 6, growx, pushx");
+		campo = new JTextField();
+		this.add(campo, "span 4, growx, pushx, wrap");
+		
+		FiltrosPresentacionController f = new FiltrosPresentacionController(this);
+		consulta = new BotonDef("Buscar");
+		consulta.addActionListener(f);
+		this.add(consulta, "span 4, growx, pushx, wrap");
 	}
 	
 	

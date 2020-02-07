@@ -25,7 +25,7 @@ public class PersonaDB extends ConexionDB{
 			Connection conn = (Connection) this.conectar();
 			conn.setAutoCommit(false);
 			
-			String persona = "INSERT INTO persona(nombres, apellidos, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo, ministerio, foto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String persona = "INSERT INTO persona(nombres, apellidos, sexo, direccion, tel_casa, cel, tel_empresa, estado_civil, fecha_nacimiento, fecha_cristiano, fecha_bautizo, fecha_asistir, activo, ministerio_id, foto) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement doInsercion = (PreparedStatement) conn.prepareStatement(persona, Statement.RETURN_GENERATED_KEYS);
 			
 			doInsercion.setString(1, p.getNombres());
@@ -139,7 +139,7 @@ public class PersonaDB extends ConexionDB{
 		
 	}
 	
-	public static ResultSet all(String consulta, int sexo, int estado_civil, int miembro_activo){
+	public static ResultSet busqueda(String consulta, int sexo, int estado_civil, int miembro_activo){
 		PersonaDB p = new PersonaDB(null);
 		try {
 			Connection conn = p.conectar();
@@ -153,7 +153,7 @@ public class PersonaDB extends ConexionDB{
 			statment.setString(3, "%" + parametro(estado_civil) + "%");
 			
 			statment.setString(4, "%" + parametro(miembro_activo) + "%");
-			 System.out.println(statment.toString());
+			//System.out.println(statment.toString());
 
 			
 			 ResultSet rs = statment.executeQuery();
