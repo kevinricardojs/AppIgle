@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/miglayout-4.0-swing.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/poi-3.10.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kevin/OneDrive - Universidad Mariano Gálvez/Eclipse/AppIgle/jar/groovy-2.5.9.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/org.eclipse.swt"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

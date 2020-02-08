@@ -140,9 +140,11 @@ public class AddPersona extends JPanel{
 		
 	}
 	
+	
+	
 	public boolean formValid() {
 		if(this.nombres.getValid() && this.apellidos.getValid() && this.direccion.getValid() && this .celular.getValid() && this.imagePath != "imagenes/camara.PNG" && this.imagePath != "" ) {
-			this.valid = true;;
+			this.valid = true;
 		}
 		else {
 			JOptionPane.showMessageDialog(null, "Debes llenar los campos obligatorios!", "Error en campos",JOptionPane.ERROR_MESSAGE);
